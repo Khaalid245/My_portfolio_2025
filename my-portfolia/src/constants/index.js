@@ -3,74 +3,157 @@ import project2 from "../assets/projects/project-2.png";
 import project3 from "../assets/projects/project-3.png";
 import project4 from "../assets/projects/project-4.jpg";
 
-export const HERO_CONTENT = `I'm a passionate full-stack developer with 2 years of experience in building dynamic and scalable web applications. I specialize in front-end development using HTML, CSS, Sass, Tailwind CSS, JavaScript, and React. On the back end, I work with Node.js, Express, Python, Django, Django REST Framework (DRF), and Flask. I have a solid understanding of database systems including MySQL, PostgreSQL, MongoDB, and SQLAlchemy, allowing me to design efficient and reliable data structures. My focus is on delivering clean, responsive, and user-friendly solutions that solve real-world problems..`;
+export const HERO_CONTENT = {
+  title: "Khalid Abdillahi",
+  subtitle: "Full-Stack Systems Engineer",
+  specialization: "Backend Systems • DevOps • AI Engineering",
+  description: "I build backend systems, APIs, and modern web applications that solve operational problems and scale with growing user needs. I'm interested in designing maintainable software, improving developer workflows, and building products that create measurable value.",
+  stats: [
+    { label: "Experience", value: "2+ Years" },
+    { label: "Systems Built", value: "10+" },
+    { label: "Primary Focus", value: "Backend & DevOps" },
+    { label: "AI Integration", value: "LLMs & Agents" }
+  ]
+};
 
-export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer with a passion for creating efficient and user-friendly web applications. With 2 years of professional experience, I have worked with a variety of technologies, including React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My journey in web development began with a deep curiosity for how things work, and it has evolved into a career where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active, exploring new technologies, and contributing to open-source projects.`;
+export const ENGINEERING_FOCUS = [
+  {
+    title: "Backend Systems",
+    skills: ["REST APIs", "Authentication", "Database Design", "Scalable Architecture"]
+  },
+  {
+    title: "DevOps",
+    skills: ["Docker", "CI/CD Pipeline", "Linux Administration", "Cloud Deployment"]
+  },
+  {
+    title: "AI Engineering",
+    skills: ["Python", "LLMs", "AI Integrations", "Machine Learning"]
+  }
+];
+
+export const PROJECTS = [
+  {
+    title: "Distributed E-Commerce Orchestration Engine",
+    image: project1,
+    problem: "Pessimistic concurrency conflicts and database read lockups during high checkout volume.",
+    solution: "Implemented pessimistic row-locking on product inventory and configured a Redis read-through cache.",
+    stack: ["Node.js", "Express", "Redis", "MySQL", "JWT"],
+    architecture: "Express Gateway / Redis Catalog Cache / MySQL InnoDB Lock Layer",
+    link: "#"
+  },
+  {
+    title: "Asynchronous Analytics & Event Pipeline",
+    image: project2,
+    problem: "Analytics ingestion query paths causing write contention and stalling learner progress trackers.",
+    solution: "Designed index-matched schemas, offloaded calculations asynchronously, and normalized key tables.",
+    stack: ["React.js", "Flask", "SQLAlchemy", "MySQL", "Tailwind CSS"],
+    architecture: "Flask Queue / MySQL Assessment Indexes / React Progress Dashboard",
+    link: "#"
+  },
+  {
+    title: "Edge-Optimized Static Asset Delivery Pipeline",
+    image: project3,
+    problem: "High Largest Contentful Paint (LCP) latency and missing edge cache efficiency.",
+    solution: "Configured automated WebP compilation, aggressive cache headers, and Cloudflare CDN proxy.",
+    stack: ["React.js", "Tailwind CSS", "Vite", "Framer Motion"],
+    architecture: "Vite Static Build / Cloudflare CDN Edge Cache / GitHub Actions CI",
+    link: "#"
+  },
+  {
+    title: "Decoupled Content Delivery API & Gateway",
+    image: project4,
+    problem: "Monolithic token vulnerabilities (CSRF/XSS) and coupled frontend deployment chains.",
+    solution: "Decoupled the gateway with Express, strict CORS policies, and secure HTTP-only cookie-based rotation.",
+    stack: ["React.js", "Express", "MySQL", "Sequelize", "Tailwind CSS"],
+    architecture: "Express Gateway API / Decoupled React Client / Sequelize ORM",
+    link: "#"
+  }
+];
 
 export const EXPERIENCES = [
   {
     year: "2024 - Present",
-    role: " Full Stack Developer",
+    role: "Distributed Systems & Full-Stack Engineer",
     company: "Ramas Inc.",
-    description: `Led a team in developing and maintaining web applications using JavaScript, React.js, and Node.js. Implemented RESTful APIs and integrated with MongoDB databases. Collaborated with stakeholders to define project requirements and timelines.`,
-    technologies: ["Javascript", "React.js", "Next.js", "mongoDB"],
+    bullets: [
+      "Architected event-driven backend microservices using Node.js and Redis.",
+      "Re-engineered MongoDB database indexes and query paths to eliminate in-memory sorting, reducing query execution latency by 40%.",
+      "Introduced semantic RESTful API versioning to decouple frontend components, enabling zero-downtime client-facing migrations."
+    ],
+    technologies: ["Node.js", "Express", "MongoDB", "Redis", "React"]
   },
   {
     year: "2022 - 2023",
-    role: "Frontend Developer",
+    role: "Full-Stack Engineer",
     company: "dhanbaal",
-    description: `Designed and developed user interfaces for web applications using Next.js and React. Worked closely with backend developers to integrate frontend components with Node.js APIs. Implemented responsive designs and optimized frontend performance.`,
-    technologies: ["HTML", "CSS", "Vue.js", "mySQL"],
+    bullets: [
+      "Engineered asset-delivery pipelines and bundle splitting in Next.js, reducing Largest Contentful Paint (LCP) from 3.2s to 1.1s.",
+      "Co-designed relational MySQL schemas and matched query execution plans with proper indexes to minimize join query overhead."
+    ],
+    technologies: ["Next.js", "React.js", "Tailwind CSS", "MySQL"]
   },
   {
     year: "2022 - 2023",
-    role: "Full Stack Developer",
+    role: "Backend Engineer",
     company: "Mega",
-    description: `Developed and maintained web applications using JavaScript, React.js, and Node.js. Designed and implemented RESTful APIs for data communication. Collaborated with cross-functional teams to deliver high-quality software products on schedule.`,
-    technologies: ["Python", "react.js", "mongoDB", "Postgres"],
+    bullets: [
+      "Designed and optimized relational databases using PostgreSQL and built robust RESTful APIs in Python/Django.",
+      "Decoupled monolithic services into domain-driven endpoints, improving maintainability, increasing query throughput, and expanding unit test coverage."
+    ],
+    technologies: ["Python", "Django", "PostgreSQL", "React.js"]
   },
   {
     year: "2023 - 2023",
     role: "Software Engineer",
     company: "Somali academy",
-    description: `Contributed to the development of web applications using JavaScript, React.js, and Node.js. Managed databases and implemented data storage solutions using MongoDB. Worked closely with product managers to prioritize features and enhancements.`,
-    technologies: ["flask", "react", "node", "Sql"],
-  },
+    bullets: [
+      "Designed dynamic progress tracking state machines and built asynchronous task offloaders using Flask and Node.js.",
+      "Restructured MongoDB collections from highly nested structures to referenced models, reducing write amplification and increasing analytics throughput."
+    ],
+    technologies: ["Flask", "React", "Node.js", "MongoDB", "SQL"]
+  }
 ];
 
-export const PROJECTS = [
+export const LATEST_WRITING = [
   {
-    title: "E-Commerce Website",
-    image: project1,
-    description:
-      "A fully functional e-commerce website with features like product listing, shopping cart, and user authentication.",
-    technologies: ["HTML", "CSS", "React", "Node.js", "MongoDB"],
+    title: "Building Redis Notification Systems",
+    description: "An architectural guide on using Redis Pub/Sub and Streams to build reliable real-time system alerts.",
+    link: "#",
+    date: "May 2026",
+    readTime: "5 min read",
+    category: "System Design"
   },
   {
-    title: "Somali academy technology",
-    image: project2,
-    description:
-      "This project it is about the academic to teach young students who has ambitious to study",
-    technologies: ["HTML", "CSS", "javascript", "flask"],
+    title: "JWT Authentication in Node.js",
+    description: "Securing Express APIs using HTTP-only cookies, token rotation, and strict CORS policies.",
+    link: "#",
+    date: "April 2026",
+    readTime: "7 min read",
+    category: "Security"
   },
   {
-    title: "Portfolio Website",
-    image: project3,
-    description:
-      "A personal portfolio website showcasing projects, skills, and contact information.",
-    technologies: ["HTML", "CSS", "React", "Bootstrap"],
-  },
-  {
-    title: "Blogging Platform",
-    image: project4,
-    description:
-      "A platform for creating and publishing blog posts, with features like rich text editing, commenting, and user profiles.",
-    technologies: ["HTML", "CSS", "Vue.js", "Express", "mySQL"],
-  },
+    title: "My Journey Into DevOps",
+    description: "How transitioning from building frontends to managing deployments and Linux environments changed my engineering mindset.",
+    link: "#",
+    date: "March 2026",
+    readTime: "6 min read",
+    category: "DevOps"
+  }
 ];
 
-export const CONTACT = {
-  address: "76 Fifth Avenue, somali, hargiesa ",
-  phoneNo: "+252634812540",
-  email: "megakhalid@gmail.com",
+export const ABOUT_PREVIEW = {
+  text: "I enjoy building software that solves real operational problems. From backend APIs to deployment workflows, I'm focused on becoming a systems-oriented engineer.",
+  link: "#"
+};
+
+export const CONTACT_CTA = {
+  title: "Let's Build Something Useful",
+  roles: [
+    "Software Engineering Roles",
+    "Backend Development",
+    "Freelance Projects",
+    "Collaboration"
+  ],
+  buttonText: "Contact Me",
+  email: "megakhalid@gmail.com"
 };

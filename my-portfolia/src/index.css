@@ -1,8 +1,109 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: "inter", sans-serif;
+  --color-bg: #FAFAFA;
+  --color-bg-sec: #FFFFFF;
+  --color-card: #FFFFFF;
+  --color-border: #E5E7EB;
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748B;
+  --color-accent: #4F46E5;
+  --color-accent-hover: #4338CA;
+}
+
+.dark {
+  --color-bg: #020617;
+  --color-bg-sec: #0F172A;
+  --color-card: #0F172A;
+  --color-border: #1E293B;
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #64748B;
+  --color-accent: #6366F1;
+  --color-accent-hover: #818CF8;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Theme toggle transition helpers */
+.theme-transition {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom styles for printing the resume */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt !important;
+  }
+
+  /* Hide navigation, buttons, and elements not meant for print */
+  nav, 
+  footer, 
+  button, 
+  .no-print, 
+  .theme-toggle-btn,
+  .download-btn-container,
+  .back-to-portfolio {
+    display: none !important;
+  }
+
+  /* Make sure container covers full width and margins are reset */
+  .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Force background grid wrapper to disappear in print */
+  .bg-grid-layer {
+    background: none !important;
+  }
+
+  /* Styled blocks to print nicely in grayscale */
+  .print-card {
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    padding: 1rem !important;
+    page-break-inside: avoid;
+  }
+
+  /* Force colored pills to be simple black-and-white print pills */
+  .print-pill {
+    background-color: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+  }
+
+  /* Prevent page breaks inside important sections */
+  .print-section {
+    page-break-inside: avoid;
+    margin-bottom: 2rem !important;
+  }
+
+  /* Adjust typography for printing */
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    page-break-after: avoid;
+  }
+
+  p, li, span {
+    color: #334155 !important;
+  }
 }
