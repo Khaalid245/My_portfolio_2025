@@ -1,16 +1,169 @@
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   FaFolderOpen, FaServer, FaDatabase, FaDocker, FaBrain, FaGlobe, 
   FaShieldAlt, FaBell, FaUsers, FaSearch, FaCode, FaBug, 
-  FaRocket, FaProjectDiagram 
+  FaRocket, FaProjectDiagram, FaChevronRight 
 } from 'react-icons/fa';
 import { 
-  ApiArchitecture, QueueSystem, AiWorkflow, 
-  CoursePlatformFlow, CommerceFlow, EventPipelineFlow 
+  ApiArchitecture, QueueSystem, AiWorkflow 
 } from '../components/ArchitectureDiagram';
 
+// Capstone actual screenshot imports
+import screen2 from '../assets/projects/imageprojects/projectone/2.png';
+import screenAdmin1 from '../assets/projects/imageprojects/projectone/admin 1.png';
+import screenAdminDashboard from '../assets/projects/imageprojects/projectone/admisn dashbaord.png';
+import screenFormMaster from '../assets/projects/imageprojects/projectone/form master.png';
+import screenFormMasterDashboard from '../assets/projects/imageprojects/projectone/form mastrer dashbaord.png';
+import screenSecuritySetting from '../assets/projects/imageprojects/projectone/security sitting.png';
+import screenSetting from '../assets/projects/imageprojects/projectone/sitting.png';
+import screenSupervisor from '../assets/projects/imageprojects/projectone/supervisor.png';
+import screenTeacherDashboard from '../assets/projects/imageprojects/projectone/teacher dashbaord.png';
+import screenTeacherDashboard2 from '../assets/projects/imageprojects/projectone/teacher dashbaord2.png';
+
+// E-Commerce actual screenshot imports
+import ecommerce1 from '../assets/projects/Imagetwo/1.png';
+import ecommerce2 from '../assets/projects/Imagetwo/2.png';
+import ecommerce3 from '../assets/projects/Imagetwo/3.png';
+import ecommerce4 from '../assets/projects/Imagetwo/4.png';
+import ecommerce6 from '../assets/projects/Imagetwo/6.png';
+import ecommerce7 from '../assets/projects/Imagetwo/7.png';
+import ecommerce8 from '../assets/projects/Imagetwo/8.png';
+
 const PortfolioPage = () => {
+  const [activeTab1, setActiveTab1] = useState(0);
+  const [activeTab2, setActiveTab2] = useState(0);
+  const [lightboxProject, setLightboxProject] = useState(null); // null, 1, or 2
+  const [autoplay1, setAutoplay1] = useState(false);
+  const [autoplay2, setAutoplay2] = useState(false);
+  const [zoomScale, setZoomScale] = useState(1);
+
+  const screenshotViews = [
+    {
+      title: 'Admin Dashboard Overview',
+      subtitle: 'Summary cards of users, teachers, classes, alerts and key metrics',
+      image: screenAdminDashboard,
+      category: 'Admin Panel'
+    },
+    {
+      title: 'Admin User Management',
+      subtitle: 'Complete control panel managing registration details and user lists',
+      image: screenAdmin1,
+      category: 'Admin Panel'
+    },
+    {
+      title: 'Teacher Core Workspace',
+      subtitle: 'Interactive monitoring grid showing student performance profiles',
+      image: screenTeacherDashboard,
+      category: 'Teacher View'
+    },
+    {
+      title: 'Form Master Overview',
+      subtitle: 'Special supervisor analytics identifying dropouts and warning triggers',
+      image: screenFormMasterDashboard,
+      category: 'Form Master'
+    },
+    {
+      title: 'System Preferences',
+      subtitle: 'Configuring metadata, academic term parameters, and schools info',
+      image: screenSetting,
+      category: 'Settings'
+    },
+    {
+      title: 'Security Configurations',
+      subtitle: 'Session policies, password protocols, and 2FA settings screen',
+      image: screenSecuritySetting,
+      category: 'Settings'
+    }
+  ];
+
+  const screenshotViews2 = [
+    {
+      title: 'Storefront Catalog Interface',
+      subtitle: 'Responsive buyer catalog page containing item listings, filters, and tags',
+      image: ecommerce1,
+      category: 'Storefront'
+    },
+    {
+      title: 'Product Specifications & Details',
+      subtitle: 'Detailed product overview with dynamic pricing and configuration selection',
+      image: ecommerce2,
+      category: 'Storefront'
+    },
+    {
+      title: 'Shopping Basket & Checkout',
+      subtitle: 'Secured buyer checkout form matching API transactions processing',
+      image: ecommerce3,
+      category: 'Checkout'
+    },
+    {
+      title: 'Merchant Dashboard Metrics',
+      subtitle: 'Operations dashboard tracing weekly sales volume and processing rates',
+      image: ecommerce4,
+      category: 'Admin Panel'
+    },
+    {
+      title: 'Merchant Inventory Control Panel',
+      subtitle: 'Operations portal to add products, set description details and define tags',
+      image: ecommerce6,
+      category: 'Admin Panel'
+    },
+    {
+      title: 'User Account & Profile Workspace',
+      subtitle: 'Customer dashboard showing order history, profile parameters and security',
+      image: ecommerce7,
+      category: 'User Account'
+    },
+    {
+      title: 'System Integration Settings',
+      subtitle: 'Configuring API keys, shipping methods, general currencies and payment services',
+      image: ecommerce8,
+      category: 'Settings'
+    }
+  ];
+
+  useEffect(() => {
+    if (!autoplay1) return;
+    const interval = setInterval(() => {
+      setActiveTab1((prev) => (prev + 1) % screenshotViews.length);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [autoplay1, screenshotViews.length]);
+
+  useEffect(() => {
+    if (!autoplay2) return;
+    const interval = setInterval(() => {
+      setActiveTab2((prev) => (prev + 1) % screenshotViews2.length);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [autoplay2, screenshotViews2.length]);
+
+  useEffect(() => {
+    if (lightboxProject === null) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') {
+        setZoomScale(1);
+        if (lightboxProject === 1) {
+          setActiveTab1((prev) => (prev + 1) % screenshotViews.length);
+        } else {
+          setActiveTab2((prev) => (prev + 1) % screenshotViews2.length);
+        }
+      } else if (e.key === 'ArrowLeft') {
+        setZoomScale(1);
+        if (lightboxProject === 1) {
+          setActiveTab1((prev) => (prev - 1 + screenshotViews.length) % screenshotViews.length);
+        } else {
+          setActiveTab2((prev) => (prev - 1 + screenshotViews2.length) % screenshotViews2.length);
+        }
+      } else if (e.key === 'Escape') {
+        setLightboxProject(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxProject, screenshotViews.length, screenshotViews2.length]);
+
   const stats = [
     { label: 'Engineering Projects', icon: <FaFolderOpen /> },
     { label: 'Backend Systems', icon: <FaServer /> },
@@ -20,59 +173,7 @@ const PortfolioPage = () => {
     { label: 'AI Experiments', icon: <FaBrain /> }
   ];
 
-  const featuredProjects = [
-    {
-      name: 'Course Management Platform',
-      problem: 'Educational institutions struggle to track facilitator activities, allocations, grading status, and communication.',
-      solution: 'Built a role-based management platform with activity tracking, Redis notifications, and backend workflow automation.',
-      flowComponent: <CoursePlatformFlow />,
-      highlights: [
-        { label: 'JWT Authentication', icon: <FaShieldAlt className="text-lightAccent dark:text-darkAccent" /> },
-        { label: 'MySQL with Sequelize', icon: <FaDatabase className="text-lightAccent dark:text-darkAccent" /> },
-        { label: 'Express API Gateway', icon: <FaServer className="text-lightAccent dark:text-darkAccent" /> },
-        { label: 'Redis Queue Notifications', icon: <FaBell className="text-lightAccent dark:text-darkAccent" /> },
-        { label: 'Role-based Management', icon: <FaUsers className="text-lightAccent dark:text-darkAccent" /> }
-      ],
-      stack: ['Node.js', 'Express', 'MySQL', 'Redis', 'JWT', 'Sequelize', 'React'],
-      github: 'https://github.com/Khaalid245?tab=repositories',
-      demo: '#',
-      caseStudy: '#'
-    },
-    {
-      name: 'Distributed E-Commerce Orchestration Engine',
-      problem: 'Pessimistic concurrency conflicts and database read lockups during high checkout volume.',
-      solution: 'Implemented pessimistic row-locking on product inventory and configured a Redis read-through cache.',
-      flowComponent: <CommerceFlow />,
-      highlights: [
-        { label: 'Concurrency Controls', icon: <FaShieldAlt className="text-lightAccent dark:text-darkAccent" /> },
-        { label: 'MySQL InnoDB Locks', icon: <FaDatabase className="text-lightAccent dark:text-darkAccent" /> },
-        { label: 'Express Gateway API', icon: <FaServer className="text-lightAccent dark:text-darkAccent" /> },
-        { label: 'Redis Invalidation Events', icon: <FaBell className="text-lightAccent dark:text-darkAccent" /> },
-        { label: 'JWT Token Rotation Sessions', icon: <FaUsers className="text-lightAccent dark:text-darkAccent" /> }
-      ],
-      stack: ['Node.js', 'Express', 'Redis', 'MySQL', 'JWT', 'Sequelize'],
-      github: 'https://github.com/Khaalid245?tab=repositories',
-      demo: '#',
-      caseStudy: '#'
-    },
-    {
-      name: 'Asynchronous Analytics & Event Pipeline',
-      problem: 'Analytics ingestion query paths causing write contention and stalling learner progress trackers.',
-      solution: 'Designed index-matched schemas, offloaded calculations asynchronously, and normalized key tables.',
-      flowComponent: <EventPipelineFlow />,
-      highlights: [
-        { label: 'Schema Constraints', icon: <FaShieldAlt className="text-lightAccent dark:text-darkAccent" /> },
-        { label: 'MySQL Performance Indexes', icon: <FaDatabase className="text-lightAccent dark:text-darkAccent" /> },
-        { label: 'Flask Queue Workers', icon: <FaServer className="text-lightAccent dark:text-darkAccent" /> },
-        { label: 'Progress State Machine', icon: <FaBell className="text-lightAccent dark:text-darkAccent" /> },
-        { label: 'React Progress Dashboards', icon: <FaUsers className="text-lightAccent dark:text-darkAccent" /> }
-      ],
-      stack: ['React.js', 'Flask', 'SQLAlchemy', 'MySQL', 'Tailwind CSS'],
-      github: 'https://github.com/Khaalid245?tab=repositories',
-      demo: '#',
-      caseStudy: '#'
-    }
-  ];
+
 
   const architectureCards = [
     { title: 'API Architecture', desc: 'Gateway proxy layer managing JWT verification, rate limiting, and request routing to Node services.', component: <ApiArchitecture /> },
@@ -119,6 +220,10 @@ const PortfolioPage = () => {
     { title: 'Open Source', desc: 'Contributing fixes to database connectors and library tooling repositories.' }
   ];
 
+  const lightboxViews = lightboxProject === 1 ? screenshotViews : (lightboxProject === 2 ? screenshotViews2 : []);
+  const lightboxActiveTab = lightboxProject === 1 ? activeTab1 : (lightboxProject === 2 ? activeTab2 : 0);
+  const setLightboxActiveTab = lightboxProject === 1 ? setActiveTab1 : (lightboxProject === 2 ? setActiveTab2 : () => {});
+
   return (
     <div className="space-y-16 py-4">
       
@@ -160,144 +265,519 @@ const PortfolioPage = () => {
         </motion.div>
       </section>
 
-      {/* 2. Featured Projects Section */}
-      <section className="space-y-16">
-        <h2 className="text-3xl font-bold tracking-tight text-lightText dark:text-darkText font-mono border-b border-slate-200/60 dark:border-slate-800/40 pb-2">
-          Featured Case Studies
-        </h2>
-        
-        <div className="space-y-24">
-          {featuredProjects.map((project, index) => {
-            const isEven = index % 2 === 0;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className={`flex flex-col lg:flex-row gap-12 items-stretch ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
+      {/* 2. Featured Case Study - School Early Warning Support System */}
+      <section className="space-y-12">
+        <div className="border-b border-slate-200/60 dark:border-slate-800/40 pb-4">
+          <span className="font-mono text-xs uppercase tracking-widest text-lightAccent dark:text-darkAccent font-bold block mb-1">
+            Featured Capstone Project
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-lightText dark:text-darkText font-mono">
+            School Early Warning Support System
+          </h2>
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-12 items-stretch">
+          {/* LEFT COLUMN: Interactive Screenshot Showcase */}
+          <div className="w-full lg:w-[48%] flex flex-col justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard/50 dark:bg-darkCard/20 p-5 space-y-5">
+            {/* Title, Subtitle, and Current Category header */}
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[9px] uppercase tracking-wider text-lightAccent dark:text-darkAccent font-bold">
+                  Interactive Showcase &bull; Screen {activeTab1 + 1}/{screenshotViews.length}
+                </span>
+                <span className="px-2 py-0.5 rounded bg-lightAccent/10 dark:bg-darkAccent/10 text-lightAccent dark:text-darkAccent text-[9px] uppercase font-mono font-bold">
+                  {screenshotViews[activeTab1].category}
+                </span>
+              </div>
+              <h4 className="font-mono text-sm font-bold text-lightText dark:text-darkText transition-all">
+                {screenshotViews[activeTab1].title}
+              </h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-normal min-h-[32px] transition-all">
+                {screenshotViews[activeTab1].subtitle}
+              </p>
+            </div>
+
+            {/* Mock Browser Container */}
+            <div className="flex-1 flex flex-col rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-900 shadow-lg overflow-hidden relative group">
+              {/* Browser Header Bar */}
+              <div className="flex items-center gap-3 px-3.5 py-2.5 bg-slate-200/50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-900">
+                {/* Windows/Mac control dots */}
+                <div className="flex gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 shadow-sm" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 shadow-sm" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 shadow-sm" />
+                </div>
+                {/* Search / Address Bar */}
+                <div className="flex-1 max-w-[200px] sm:max-w-xs mx-auto flex items-center justify-between rounded-md bg-white dark:bg-slate-950/80 px-2 py-0.5 text-[10px] font-mono text-slate-400 dark:text-slate-500 border border-slate-250 dark:border-slate-850">
+                  <div className="flex items-center gap-1 overflow-hidden">
+                    <span className="text-[10px]">🔒</span>
+                    <span className="text-slate-500 dark:text-slate-400 truncate select-all">
+                      {`earlywarning.io/app/${screenshotViews[activeTab1].category.toLowerCase().replace(/\s+/g, '-')}`}
+                    </span>
+                  </div>
+                  <button 
+                    onClick={() => setActiveTab1(activeTab1)} 
+                    className="hover:text-lightAccent dark:hover:text-darkAccent transition-colors text-[9px]"
+                    title="Refresh view"
+                  >
+                    ⟳
+                  </button>
+                </div>
+              </div>
+
+              {/* Active Image Viewport with Next/Prev Arrow Overlays */}
+              <div className="relative flex-1 flex items-center justify-center p-3 bg-slate-950/[0.02] dark:bg-slate-950/40 min-h-[260px] max-h-[300px] overflow-hidden">
+                {/* Left Arrow overlay */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveTab1((prev) => (prev - 1 + screenshotViews.length) % screenshotViews.length);
+                  }}
+                  className="absolute left-2.5 z-10 p-1.5 rounded-full bg-black/55 hover:bg-black/85 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 focus:outline-none text-xs font-mono shadow-md"
+                  title="Previous image"
+                >
+                  &#9664;
+                </button>
+
+                <motion.img 
+                  key={activeTab1}
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.25 }}
+                  src={screenshotViews[activeTab1].image} 
+                  alt={screenshotViews[activeTab1].title}
+                  className="max-w-full max-h-[240px] object-contain rounded shadow-sm hover:scale-[1.01] transition-transform duration-500 cursor-zoom-in"
+                  onClick={() => {
+                    setZoomScale(1);
+                    setLightboxProject(1);
+                  }}
+                />
+
+                {/* Right Arrow overlay */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveTab1((prev) => (prev + 1) % screenshotViews.length);
+                  }}
+                  className="absolute right-2.5 z-10 p-1.5 rounded-full bg-black/55 hover:bg-black/85 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 focus:outline-none text-xs font-mono shadow-md"
+                  title="Next image"
+                >
+                  &#9654;
+                </button>
+
+                {/* Hover indicator banner */}
+                <div 
+                  className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-sm px-2.5 py-1 rounded-md text-[9px] font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5"
+                >
+                  <span>🔍 Click to Zoom</span>
+                  <span className="border-l border-slate-700 pl-1.5 text-slate-400">
+                    {activeTab1 + 1} / {screenshotViews.length}
+                  </span>
+                </div>
+              </div>
+
+              {/* Status and Slideshow Control Bar */}
+              <div className="flex items-center justify-between px-3.5 py-2 bg-slate-200/30 dark:bg-slate-900/40 border-t border-slate-200 dark:border-slate-900 text-xs font-mono">
+                {/* Auto Play Slideshow Toggle */}
+                <button
+                  onClick={() => setAutoplay1(!autoplay1)}
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded border transition-all duration-200 text-[10px] font-bold ${
+                    autoplay1 
+                      ? "border-lightAccent dark:border-darkAccent bg-lightAccent/10 dark:bg-darkAccent/10 text-lightAccent dark:text-darkAccent"
+                      : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+                  }`}
+                >
+                  <span>{autoplay1 ? '⏸ Pause Autoplay' : '▶ Slideshow'}</span>
+                </button>
+
+                {/* Current Slide Number */}
+                <span className="text-slate-400 text-[10px] font-semibold">
+                  {activeTab1 + 1} of {screenshotViews.length}
+                </span>
+              </div>
+            </div>
+
+            {/* Real Image Thumbnails Row */}
+            <div className="space-y-1.5 pt-1">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-slate-400 block font-bold">
+                Select Screen Preview (All 10 Screens)
+              </span>
+              <div className="flex gap-2 overflow-x-auto pb-1.5 scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-800 scrollbar-track-transparent snap-x">
+                {screenshotViews.map((tab, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveTab1(idx)}
+                    className={`relative flex-shrink-0 w-[72px] h-[50px] rounded-lg border-2 overflow-hidden snap-start transition-all duration-200 ${
+                      activeTab1 === idx
+                        ? "border-lightAccent dark:border-darkAccent scale-105 shadow-md opacity-100"
+                        : "border-slate-200 dark:border-slate-800/80 opacity-50 hover:opacity-90 hover:border-slate-400"
+                    }`}
+                    title={tab.title}
+                  >
+                    <img 
+                      src={tab.image} 
+                      alt={tab.title} 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-black/70 py-0.5 text-[8px] font-mono text-white text-center truncate px-0.5 leading-none">
+                      {tab.title.split(' ')[0]}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* RIGHT COLUMN: Project Info and Highlights */}
+          <div className="w-full lg:w-[52%] flex flex-col justify-between space-y-6">
+            {/* Overview */}
+            <div className="space-y-4">
+              <p className="text-sm text-slate-650 dark:text-slate-400 leading-relaxed font-sans">
+                A full-stack educational platform designed to help schools monitor attendance, identify academic risk indicators, and support intervention workflows between teachers and administrators.
+              </p>
+
+              {/* Problem ➔ Solution Structure */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="space-y-1">
+                  <h5 className="font-mono text-[10px] uppercase tracking-wider text-rose-500 font-bold">
+                    The Problem
+                  </h5>
+                  <p className="text-xs text-slate-650 dark:text-slate-450 font-sans leading-relaxed">
+                    Schools struggle to monitor attendance patterns manually, leading to delayed academic interventions and increased drop-out rates.
+                  </p>
+                </div>
+                <div className="space-y-1">
+                  <h5 className="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-bold">
+                    The Solution
+                  </h5>
+                  <p className="text-xs text-slate-650 dark:text-slate-455 font-sans leading-relaxed">
+                    Automated event pipelines calculate real-time risk scores, instantly flagging warning indicators to supervisor dashboards for immediate support.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Technical Highlights */}
+            <div className="border-t border-slate-200/60 dark:border-slate-800/40 pt-4 space-y-2.5">
+              <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+                Technical Highlights
+              </h4>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs text-slate-600 dark:text-slate-400 font-sans">
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-500 dark:text-emerald-400 font-bold">✔</span>
+                  <span>JWT authentication with secure cookies</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-500 dark:text-emerald-400 font-bold">✔</span>
+                  <span>Redis async task processing</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-500 dark:text-emerald-400 font-bold">✔</span>
+                  <span>Role-based portal permissions workflows</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-500 dark:text-emerald-400 font-bold">✔</span>
+                  <span>DRF REST APIs & MySQL database</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Tech stack badges */}
+            <div className="space-y-2.5 border-t border-slate-200/60 dark:border-slate-800/40 pt-4">
+              <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+                Technology Stack
+              </h4>
+              <div className="flex flex-wrap gap-1.5 font-mono">
+                {['React', 'Tailwind CSS', 'Django REST', 'MySQL', 'Redis', 'Docker', 'JWT'].map((tech, techIdx) => (
+                  <span
+                    key={techIdx}
+                    className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs text-slate-650 dark:text-slate-400"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Links and Buttons */}
+            <div className="flex flex-wrap gap-3 pt-2 font-mono">
+              <a 
+                href="https://www.alifmonitor.com/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-lightAccent dark:bg-darkAccent text-white text-xs font-bold px-4 py-2 hover:opacity-90 transition shadow-sm"
               >
-                {/* Visual Architecture Diagram Area */}
-                <div className="w-full lg:w-1/2 flex flex-col justify-center bg-slate-50/50 dark:bg-slate-950/20 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
-                  <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-4 text-center">
-                    System Architecture
-                  </div>
-                  {project.flowComponent}
-                </div>
-
-                {/* Details Text Area */}
-                <div className="w-full lg:w-1/2 flex flex-col justify-between space-y-6">
-                  <div>
-                    <h3 className="text-2xl font-bold text-lightText dark:text-darkText font-mono">
-                      {project.name}
-                    </h3>
-                    
-                    <div className="mt-4 space-y-3.5 text-sm leading-relaxed">
-                      <p className="text-slate-600 dark:text-slate-400">
-                        <span className="font-mono text-xs uppercase tracking-wider text-lightAccent dark:text-darkAccent font-bold mr-2">Problem:</span>
-                        {project.problem}
-                      </p>
-                      <p className="text-slate-700 dark:text-slate-300">
-                        <span className="font-mono text-xs uppercase tracking-wider text-lightAccent dark:text-darkAccent font-bold mr-2">Solution:</span>
-                        {project.solution}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Highlights Grid */}
-                  <div className="border-t border-slate-100 dark:border-slate-800/80 pt-4">
-                    <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider mb-3">
-                      Technical Highlights
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {project.highlights.map((hl, hlIdx) => (
-                        <div key={hlIdx} className="flex items-center gap-2.5 text-xs text-slate-500 dark:text-slate-400">
-                          <span className="text-sm">{hl.icon}</span>
-                          <span>{hl.label}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Tech stack & Links */}
-                  <div className="space-y-4 pt-2">
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.stack.map((tech, techIdx) => (
-                        <span
-                          key={techIdx}
-                          className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs font-mono text-slate-600 dark:text-slate-400"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex gap-4 pt-2 text-xs font-mono">
-                      <a 
-                        href={project.github} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="text-lightAccent dark:text-darkAccent hover:underline flex items-center gap-1"
-                      >
-                        GitHub &rarr;
-                      </a>
-                      <a 
-                        href={project.demo} 
-                        className="text-lightAccent dark:text-darkAccent hover:underline flex items-center gap-1"
-                      >
-                        Live Demo &rarr;
-                      </a>
-                      <a 
-                        href={project.caseStudy} 
-                        className="text-lightAccent dark:text-darkAccent hover:underline flex items-center gap-1"
-                      >
-                        Case Study &rarr;
-                      </a>
-                    </div>
-                  </div>
-
-                </div>
-              </motion.div>
-            );
-          })}
+                Live Demo &rarr;
+              </a>
+              <a 
+                href="https://github.com/Khaalid245/somali-early-warning-system-school" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard text-xs text-lightText dark:text-darkText px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              >
+                GitHub Code
+              </a>
+              <a 
+                href="#/case-study" 
+                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard text-xs text-lightText dark:text-darkText px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              >
+                Case Study
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 3. Architecture Showcase */}
+      {/* 3. E-Commerce Platform Case Study */}
       <section className="space-y-12">
-        <div className="text-center md:text-left">
-          <h2 className="text-3xl font-bold tracking-tight text-lightText dark:text-darkText font-mono">
-            How I Design Systems
+        <div className="border-b border-slate-200/60 dark:border-slate-800/40 pb-4">
+          <span className="font-mono text-xs uppercase tracking-widest text-lightAccent dark:text-darkAccent font-bold block mb-1">
+            Featured E-Commerce Project
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-lightText dark:text-darkText font-mono">
+            High-Scale E-Commerce Platform
           </h2>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-            Showcase of standard API architectures, queue decoupling, and vector store integration flows.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8">
-          {architectureCards.map((card, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-6 space-y-6"
-            >
-              <div>
-                <h3 className="font-mono text-lg font-bold text-lightText dark:text-darkText">
-                  {card.title}
-                </h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-2xl leading-relaxed">
-                  {card.desc}
-                </p>
+        <div className="flex flex-col lg:flex-row gap-12 items-stretch">
+          {/* LEFT COLUMN: Interactive Screenshot Showcase */}
+          <div className="w-full lg:w-[48%] flex flex-col justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard/50 dark:bg-darkCard/20 p-5 space-y-5">
+            {/* Title, Subtitle, and Current Category header */}
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[9px] uppercase tracking-wider text-lightAccent dark:text-darkAccent font-bold">
+                  Interactive Showcase &bull; Screen {activeTab2 + 1}/{screenshotViews2.length}
+                </span>
+                <span className="px-2 py-0.5 rounded bg-lightAccent/10 dark:bg-darkAccent/10 text-lightAccent dark:text-darkAccent text-[9px] uppercase font-mono font-bold">
+                  {screenshotViews2[activeTab2].category}
+                </span>
               </div>
-              <div className="overflow-x-auto pb-2">
-                {card.component}
+              <h4 className="font-mono text-sm font-bold text-lightText dark:text-darkText transition-all">
+                {screenshotViews2[activeTab2].title}
+              </h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-normal min-h-[32px] transition-all">
+                {screenshotViews2[activeTab2].subtitle}
+              </p>
+            </div>
+
+            {/* Mock Browser Container */}
+            <div className="flex-1 flex flex-col rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-900 shadow-lg overflow-hidden relative group">
+              {/* Browser Header Bar */}
+              <div className="flex items-center gap-3 px-3.5 py-2.5 bg-slate-200/50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-900">
+                {/* Windows/Mac control dots */}
+                <div className="flex gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 shadow-sm" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 shadow-sm" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 shadow-sm" />
+                </div>
+                {/* Search / Address Bar */}
+                <div className="flex-1 max-w-[200px] sm:max-w-xs mx-auto flex items-center justify-between rounded-md bg-white dark:bg-slate-950/80 px-2 py-0.5 text-[10px] font-mono text-slate-400 dark:text-slate-500 border border-slate-250 dark:border-slate-850">
+                  <div className="flex items-center gap-1 overflow-hidden">
+                    <span className="text-[10px]">🔒</span>
+                    <span className="text-slate-500 dark:text-slate-400 truncate select-all">
+                      {`ecommerce.io/app/${screenshotViews2[activeTab2].category.toLowerCase().replace(/\s+/g, '-')}`}
+                    </span>
+                  </div>
+                  <button 
+                    onClick={() => setActiveTab2(activeTab2)} 
+                    className="hover:text-lightAccent dark:hover:text-darkAccent transition-colors text-[9px]"
+                    title="Refresh view"
+                  >
+                    ⟳
+                  </button>
+                </div>
               </div>
-            </motion.div>
-          ))}
+
+              {/* Active Image Viewport with Next/Prev Arrow Overlays */}
+              <div className="relative flex-1 flex items-center justify-center p-3 bg-slate-950/[0.02] dark:bg-slate-950/40 min-h-[260px] max-h-[300px] overflow-hidden">
+                {/* Left Arrow overlay */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveTab2((prev) => (prev - 1 + screenshotViews2.length) % screenshotViews2.length);
+                  }}
+                  className="absolute left-2.5 z-10 p-1.5 rounded-full bg-black/55 hover:bg-black/85 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 focus:outline-none text-xs font-mono shadow-md"
+                  title="Previous image"
+                >
+                  &#9664;
+                </button>
+
+                <motion.img 
+                  key={activeTab2}
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.25 }}
+                  src={screenshotViews2[activeTab2].image} 
+                  alt={screenshotViews2[activeTab2].title}
+                  className="max-w-full max-h-[240px] object-contain rounded shadow-sm hover:scale-[1.01] transition-transform duration-500 cursor-zoom-in"
+                  onClick={() => {
+                    setZoomScale(1);
+                    setLightboxProject(2);
+                  }}
+                />
+
+                {/* Right Arrow overlay */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveTab2((prev) => (prev + 1) % screenshotViews2.length);
+                  }}
+                  className="absolute right-2.5 z-10 p-1.5 rounded-full bg-black/55 hover:bg-black/85 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 focus:outline-none text-xs font-mono shadow-md"
+                  title="Next image"
+                >
+                  &#9654;
+                </button>
+
+                {/* Hover indicator banner */}
+                <div 
+                  className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-sm px-2.5 py-1 rounded-md text-[9px] font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5"
+                >
+                  <span>🔍 Click to Zoom</span>
+                  <span className="border-l border-slate-700 pl-1.5 text-slate-400">
+                    {activeTab2 + 1} / {screenshotViews2.length}
+                  </span>
+                </div>
+              </div>
+
+              {/* Status and Slideshow Control Bar */}
+              <div className="flex items-center justify-between px-3.5 py-2 bg-slate-200/30 dark:bg-slate-900/40 border-t border-slate-200 dark:border-slate-900 text-xs font-mono">
+                {/* Auto Play Slideshow Toggle */}
+                <button
+                  onClick={() => setAutoplay2(!autoplay2)}
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded border transition-all duration-200 text-[10px] font-bold ${
+                    autoplay2 
+                      ? "border-lightAccent dark:border-darkAccent bg-lightAccent/10 dark:bg-darkAccent/10 text-lightAccent dark:text-darkAccent"
+                      : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+                  }`}
+                >
+                  <span>{autoplay2 ? '⏸ Pause Autoplay' : '▶ Slideshow'}</span>
+                </button>
+
+                {/* Current Slide Number */}
+                <span className="text-slate-400 text-[10px] font-semibold">
+                  {activeTab2 + 1} of {screenshotViews2.length}
+                </span>
+              </div>
+            </div>
+
+            {/* Real Image Thumbnails Row */}
+            <div className="space-y-1.5 pt-1">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-slate-450 block font-bold">
+                Select Screen Preview (All 7 Screens)
+              </span>
+              <div className="flex gap-2 overflow-x-auto pb-1.5 scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-800 scrollbar-track-transparent snap-x">
+                {screenshotViews2.map((tab, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveTab2(idx)}
+                    className={`relative flex-shrink-0 w-[72px] h-[50px] rounded-lg border-2 overflow-hidden snap-start transition-all duration-200 ${
+                      activeTab2 === idx
+                        ? "border-lightAccent dark:border-darkAccent scale-105 shadow-md opacity-100"
+                        : "border-slate-200 dark:border-slate-800/80 opacity-50 hover:opacity-90 hover:border-slate-400"
+                    }`}
+                    title={tab.title}
+                  >
+                    <img 
+                      src={tab.image} 
+                      alt={tab.title} 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-black/70 py-0.5 text-[8px] font-mono text-white text-center truncate px-0.5 leading-none">
+                      {tab.title.split(' ')[0]}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* RIGHT COLUMN: Project Info and Highlights */}
+          <div className="w-full lg:w-[52%] flex flex-col justify-between space-y-6">
+            {/* Overview */}
+            <div className="space-y-4">
+              <p className="text-sm text-slate-650 dark:text-slate-400 leading-relaxed font-sans">
+                A high-performance e-commerce catalog and checkout platform engineered to handle complex operations, transaction integrity, and robust integrations with payment processing networks.
+              </p>
+
+              {/* Problem ➔ Solution Structure */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="space-y-1">
+                  <h5 className="font-mono text-[10px] uppercase tracking-wider text-rose-500 font-bold">
+                    The Problem
+                  </h5>
+                  <p className="text-xs text-slate-650 dark:text-slate-450 font-sans leading-relaxed">
+                    Legacy checkout systems suffer from inventory race conditions under high load, causing double-selling of items, slow catalog lookup times, and asynchronous webhook delivery failures.
+                  </p>
+                </div>
+                <div className="space-y-1">
+                  <h5 className="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-bold">
+                    The Solution
+                  </h5>
+                  <p className="text-xs text-slate-650 dark:text-slate-455 font-sans leading-relaxed">
+                    Designed a high-concurrency order pipeline utilizing SQL transaction row-locking for stock reservation, Redis caching for fast static search, and idempotent webhook listeners with automatic retries to sync storefront checkout states.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Technical Highlights */}
+            <div className="border-t border-slate-200/60 dark:border-slate-800/40 pt-4 space-y-2.5">
+              <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+                Technical Highlights
+              </h4>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs text-slate-600 dark:text-slate-400 font-sans">
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-500 dark:text-emerald-400 font-bold">✔</span>
+                  <span>Stripe checkout APIs with idempotent webhooks</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-500 dark:text-emerald-400 font-bold">✔</span>
+                  <span>Redis cache-aside queries for product catalog</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-500 dark:text-emerald-400 font-bold">✔</span>
+                  <span>Relational database transaction locks for race prevention</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-500 dark:text-emerald-400 font-bold">✔</span>
+                  <span>DRF REST APIs & PostgreSQL database</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Tech stack badges */}
+            <div className="space-y-2.5 border-t border-slate-200/60 dark:border-slate-800/40 pt-4">
+              <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+                Technology Stack
+              </h4>
+              <div className="flex flex-wrap gap-1.5 font-mono">
+                {['React', 'Tailwind CSS', 'Django REST', 'PostgreSQL', 'Redis', 'Docker', 'Stripe'].map((tech, techIdx) => (
+                  <span
+                    key={techIdx}
+                    className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs text-slate-650 dark:text-slate-400"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Links and Buttons */}
+            <div className="flex flex-wrap gap-3 pt-2 font-mono">
+              <a 
+                href="#/portfolio" 
+                className="inline-flex items-center gap-1.5 rounded-lg bg-lightAccent dark:bg-darkAccent text-white text-xs font-bold px-4 py-2 hover:opacity-90 transition shadow-sm"
+              >
+                Live Demo &rarr;
+              </a>
+              <a 
+                href="https://github.com/Khaalid245" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard text-xs text-lightText dark:text-darkText px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              >
+                GitHub Code
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -443,6 +923,155 @@ const PortfolioPage = () => {
           </div>
         </motion.div>
       </section>
+
+      {/* Lightbox Modal */}
+      {lightboxProject !== null && (
+        <div 
+          className="fixed inset-0 z-50 flex flex-col justify-between bg-black/95 backdrop-blur-md p-4 transition-opacity duration-300 select-none"
+          onClick={() => setLightboxProject(null)}
+        >
+          {/* Header Bar */}
+          <div 
+            className="flex items-center justify-between p-3 bg-slate-900/80 border border-slate-800 rounded-lg text-white font-mono text-xs z-10 gap-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex flex-col gap-0.5">
+              <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold">
+                {lightboxViews[lightboxActiveTab]?.category} &bull; Screen {lightboxActiveTab + 1} of {lightboxViews.length}
+              </span>
+              <span className="text-sm font-bold text-slate-200">
+                {lightboxViews[lightboxActiveTab]?.title}
+              </span>
+            </div>
+
+            {/* Lightbox Toolbar Controls */}
+            <div className="flex items-center gap-2">
+              {/* Zoom Out Button */}
+              <button
+                onClick={() => setZoomScale((prev) => Math.max(0.75, prev - 0.25))}
+                className="p-1.5 px-2.5 rounded bg-slate-950 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-850 transition"
+                title="Zoom Out"
+              >
+                ➖
+              </button>
+              
+              {/* Scale Indicator */}
+              <span className="px-2 font-mono text-[11px] text-slate-400 font-bold min-w-[50px] text-center">
+                {Math.round(zoomScale * 100)}%
+              </span>
+
+              {/* Zoom In Button */}
+              <button
+                onClick={() => setZoomScale((prev) => Math.min(3.0, prev + 0.25))}
+                className="p-1.5 px-2.5 rounded bg-slate-950 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-850 transition"
+                title="Zoom In"
+              >
+                ➕
+              </button>
+
+              {/* Reset Zoom Button */}
+              <button
+                onClick={() => setZoomScale(1)}
+                className="p-1.5 px-2.5 rounded bg-slate-950 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-850 transition font-mono text-[10px]"
+                title="Reset Zoom"
+              >
+                ↺ Reset
+              </button>
+
+              {/* Separator */}
+              <span className="h-5 w-[1px] bg-slate-800 mx-1" />
+
+              {/* Close Button */}
+              <button 
+                className="text-white hover:text-rose-400 bg-rose-950/20 border border-rose-900/50 rounded-md px-3 py-1.5 focus:outline-none transition duration-300 font-bold"
+                onClick={() => setLightboxProject(null)}
+              >
+                ✕ Close
+              </button>
+            </div>
+          </div>
+
+          {/* Central Main Viewport Wrapper with Chevron Buttons */}
+          <div className="relative flex-1 flex items-center justify-center overflow-hidden my-4">
+            {/* Left navigation chevron */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoomScale(1);
+                setLightboxActiveTab((prev) => (prev - 1 + lightboxViews.length) % lightboxViews.length);
+              }}
+              className="absolute left-4 z-10 p-3 rounded-full bg-slate-900/80 border border-slate-850 text-white hover:bg-slate-850 hover:scale-105 transition-all focus:outline-none"
+              title="Previous screen (Left Arrow)"
+            >
+              &#9664;
+            </button>
+
+            {/* Scrollable image container for panning when zoomed */}
+            <div 
+              className="w-full h-full flex items-center justify-center overflow-auto p-4 cursor-zoom-in"
+              onClick={() => setLightboxProject(null)}
+            >
+              <motion.img 
+                key={`${lightboxActiveTab}-${zoomScale}`}
+                initial={{ scale: 0.95 * zoomScale, opacity: 0 }}
+                animate={{ scale: zoomScale, opacity: 1 }}
+                transition={{ duration: 0.2 }}
+                src={lightboxViews[lightboxActiveTab]?.image} 
+                alt={lightboxViews[lightboxActiveTab]?.title}
+                className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl transition-transform duration-200"
+                style={{ transform: `scale(${zoomScale})`, transformOrigin: 'center center' }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  // Click to toggle zoom between 1x and 1.75x
+                  setZoomScale((prev) => (prev === 1 ? 1.75 : 1.0));
+                }}
+              />
+            </div>
+
+            {/* Right navigation chevron */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoomScale(1);
+                setLightboxActiveTab((prev) => (prev + 1) % lightboxViews.length);
+              }}
+              className="absolute right-4 z-10 p-3 rounded-full bg-slate-900/80 border border-slate-855 text-white hover:bg-slate-855 hover:scale-105 transition-all focus:outline-none"
+              title="Next screen (Right Arrow)"
+            >
+              &#9654;
+            </button>
+          </div>
+
+          {/* Bottom Thumbnail Navigation Strip inside Lightbox */}
+          <div 
+            className="p-3 bg-slate-900/80 border border-slate-800 rounded-lg text-white font-mono text-xs z-10 flex flex-col items-center gap-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex gap-2 overflow-x-auto max-w-full pb-1 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+              {lightboxViews.map((tab, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setZoomScale(1);
+                    setLightboxActiveTab(idx);
+                  }}
+                  className={`relative flex-shrink-0 w-14 h-10 rounded border overflow-hidden transition-all duration-200 ${
+                    lightboxActiveTab === idx
+                      ? "border-lightAccent dark:border-darkAccent scale-105 opacity-100"
+                      : "border-slate-800 opacity-40 hover:opacity-85"
+                  }`}
+                  title={tab.title}
+                >
+                  <img src={tab.image} alt={tab.title} className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+            <p className="text-[10px] text-slate-500 text-center">
+              💡 Keyboard shortcut: Use <kbd className="bg-slate-950 px-1 py-0.5 rounded text-slate-400 font-bold border border-slate-800">←</kbd> and <kbd className="bg-slate-950 px-1 py-0.5 rounded text-slate-400 font-bold border border-slate-800">→</kbd> keys to navigate. Click screen image to toggle zoom.
+            </p>
+          </div>
+        </div>
+      )}
 
     </div>
   );
