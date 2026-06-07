@@ -7,26 +7,26 @@ const EngineeringPhilosophyPage = () => {
     {
       icon: <FaLeaf className="text-2xl text-lightAccent dark:text-darkAccent" />,
       title: 'Build for Simplicity',
-      description: 'Simple systems are easier to maintain, debug, and scale. I prefer clear, readable architecture over unnecessary abstractions or clever complexity.'
+      description: 'Simple codebases are easier to maintain and debug. I prefer flat files and clean logic paths over over-engineered abstractions.'
     },
     {
       icon: <FaTools className="text-2xl text-lightAccent dark:text-darkAccent" />,
-      title: 'Solve Real Problems',
-      description: 'Technology is a tool, not the goal. It should solve actual operational bottlenecks and create measurable value. I focus on practical, stable solutions.'
+      title: 'Solve Real Bottlenecks',
+      description: 'Software is a tool to automate tasks and remove friction. I focus on optimizing query times, securing endpoints, and resolving bottlenecks rather than chasing tech hype.'
     },
     {
       icon: <FaGraduationCap className="text-2xl text-lightAccent dark:text-darkAccent" />,
-      title: 'Learn Continuously',
-      description: 'Software engineering evolves rapidly. Continuous learning, researching emerging standards, and adapting to new technologies is core to the engineering craft.'
+      title: 'Practical Learning',
+      description: 'Systems evolve quickly. Staying up to date with database index optimizations, security patches, and deployment workflows keeps code bases robust and reliable.'
     }
   ];
 
   const systemsThinkingNodes = [
-    { label: 'Frontend', desc: 'Interfaces' },
-    { label: 'API', desc: 'Gateways & Logic' },
-    { label: 'Database', desc: 'Storage & Indexes' },
-    { label: 'Infrastructure', desc: 'Containers & Cloud' },
-    { label: 'Deployment', desc: 'CI/CD & Edges' }
+    { label: 'Frontend', desc: 'UI & User Interfaces' },
+    { label: 'API', desc: 'API Logic & Routing' },
+    { label: 'Database', desc: 'Queries & Storage' },
+    { label: 'Infrastructure', desc: 'Docker & Servers' },
+    { label: 'Deployment', desc: 'GitHub Actions & CDN' }
   ];
 
   return (
@@ -50,15 +50,16 @@ const EngineeringPhilosophyPage = () => {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.05 }}
-            className="rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-lightCard dark:bg-darkCard p-6 flex flex-col gap-4 hover:shadow-md transition-shadow"
+            whileHover={{ y: -4 }}
+            className="rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-lightCard dark:bg-darkCard p-6 flex flex-col gap-4 hover:border-lightAccent/40 dark:hover:border-darkAccent/40 hover:shadow-lg transition-all duration-300 group cursor-default"
           >
-            <div className="p-3 bg-lightBg dark:bg-slate-900 w-fit rounded-xl border border-slate-100 dark:border-slate-800/60">
+            <div className="p-3 bg-lightBg dark:bg-slate-900 w-fit rounded-xl border border-slate-100 dark:border-slate-800/60 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
               {p.icon}
             </div>
             <h3 className="font-mono text-lg font-bold text-lightText dark:text-darkText">
               {p.title}
             </h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-[92%]">
               {p.description}
             </p>
           </motion.div>
@@ -75,7 +76,7 @@ const EngineeringPhilosophyPage = () => {
             <h2 className="text-2xl font-bold text-lightText dark:text-darkText font-mono">
               Systems Thinking
             </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-xl">
               I enjoy understanding how components interact across the entire stack:
             </p>
           </div>
@@ -89,8 +90,9 @@ const EngineeringPhilosophyPage = () => {
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
+                whileHover={{ y: -2, scale: 1.02 }}
                 transition={{ duration: 0.3, delay: index * 0.08 }}
-                className="w-full md:w-36 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-lightBg dark:bg-slate-950 p-4 text-center hover:border-lightAccent dark:hover:border-darkAccent transition-colors duration-300"
+                className="w-full md:w-36 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-lightBg dark:bg-slate-950 p-4 text-center hover:border-lightAccent dark:hover:border-darkAccent hover:shadow-sm transition-all duration-300 cursor-default"
               >
                 <div className="text-xs font-mono font-bold text-lightAccent dark:text-darkAccent uppercase tracking-wide">
                   {node.label}
@@ -112,16 +114,16 @@ const EngineeringPhilosophyPage = () => {
       </section>
 
       {/* Future Direction Section */}
-      <section className="rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-lightCard dark:bg-darkCard p-8">
+      <section className="rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-lightCard dark:bg-darkCard p-8 hover:border-lightAccent/20 dark:hover:border-darkAccent/20 transition-colors duration-300 group">
         <div className="flex flex-col md:flex-row items-center gap-6">
-          <div className="p-4 bg-lightAccent/10 dark:bg-darkAccent/10 rounded-2xl">
-            <FaRocket className="text-4xl text-lightAccent dark:text-darkAccent animate-bounce" />
+          <div className="p-4 bg-lightAccent/10 dark:bg-darkAccent/10 rounded-2xl group-hover:scale-105 transition-transform duration-300">
+            <FaRocket className="text-4xl text-lightAccent dark:text-darkAccent" />
           </div>
           <div className="space-y-4 flex-1">
             <h2 className="text-2xl font-bold text-lightText dark:text-darkText font-mono">
               Future Direction
             </h2>
-            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
               My long-term goal is to become an engineer capable of designing and deploying complete, resilient systems, from microservices backend architecture to automated cloud infrastructure and AI-powered operational tools.
             </p>
           </div>

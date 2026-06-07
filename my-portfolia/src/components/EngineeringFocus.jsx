@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { Server, Workflow, Brain } from 'lucide-react';
 
 const EngineeringFocus = () => {
-  const devopsTags = ["Docker", "CI/CD", "Linux", "GitHub Actions", "Cloud"];
-  const aiTags = ["Python", "LLMs", "RAG", "AI Integrations", "Prompt Engineering"];
+  const devopsTags = ["Docker", "CI/CD Pipelines", "Linux Shell", "Nginx"];
+  const aiTags = ["Python", "LLM APIs", "Vector Databases", "AI Workflows"];
 
   const cardVariants = {
     hidden: { opacity: 0, y: 15 },
@@ -28,7 +28,7 @@ const EngineeringFocus = () => {
           What I Enjoy Building
         </h2>
         <p className="text-[17px] md:text-[19px] font-body text-textSecondary max-w-2xl leading-relaxed">
-          I enjoy building reliable backend systems, modern web applications, and practical AI solutions that solve real-world problems.
+          I focus on building scalable applications, backend systems, automating DevOps workflows, and integrating practical AI systems.
         </p>
       </div>
 
@@ -49,15 +49,15 @@ const EngineeringFocus = () => {
             <div className="lg:col-span-7 flex flex-col justify-between h-full space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <span className="p-3 bg-bgPrimary border border-borderPrimary/80 group-hover:border-accent/20 rounded-xl block text-accent group-hover:scale-110 transition-all duration-300">
+                  <span className="p-3 bg-bgPrimary border border-borderPrimary/85 group-hover:border-accent/20 rounded-xl block text-accent group-hover:scale-110 transition-all duration-300">
                     <Server size={32} />
                   </span>
                   <h3 className="font-heading text-[24px] font-bold text-textPrimary tracking-tight">
-                    Backend Systems
+                    Full-Stack Web Apps
                   </h3>
                 </div>
                 <p className="text-[17px] font-body text-textSecondary leading-relaxed max-w-xl">
-                  I design scalable APIs, authentication systems, databases, and backend services with maintainability and long-term growth in mind.
+                  I build complete web applications, coordinating responsive frontends, server-side APIs, and database schemas with a focus on reliability and performance.
                 </p>
               </div>
               <div>
@@ -65,7 +65,7 @@ const EngineeringFocus = () => {
                   to="/portfolio" 
                   className="inline-flex items-center gap-1.5 text-[15px] font-mono text-accent hover:text-accentHover font-semibold transition-colors duration-300 group/link"
                 >
-                  View Backend Projects 
+                  View My Projects 
                   <span className="group-hover/link:translate-x-1 transition-transform duration-300">&rarr;</span>
                 </Link>
               </div>
@@ -75,7 +75,7 @@ const EngineeringFocus = () => {
             <div className="lg:col-span-5 flex items-center h-full">
               <div className="w-full rounded-2xl border border-borderPrimary bg-bgPrimary/40 overflow-hidden shadow-inner font-mono text-[13px] text-textSecondary">
                 {/* Window Header */}
-                <div className="flex items-center justify-between px-4 py-3 bg-bgPrimary/60 border-b border-borderPrimary/80">
+                <div className="flex items-center justify-between px-4 py-3 bg-bgPrimary/60 border-b border-borderPrimary/85">
                   <div className="flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]/80 inline-block" />
                     <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]/80 inline-block" />
@@ -87,24 +87,26 @@ const EngineeringFocus = () => {
                 {/* Window Content */}
                 <div className="p-5 space-y-4">
                   <div className="space-y-1.5">
-                    <span className="text-accent text-[11px] font-bold uppercase tracking-wider">APIs & Protocols</span>
+                    <span className="text-accent text-[11px] font-bold uppercase tracking-wider">APIs & Frontend</span>
                     <div className="flex gap-2">
+                      <span className="px-2.5 py-1 bg-cardBg border border-borderPrimary rounded-lg text-[13px] font-medium transition-colors hover:border-accent/30 select-none">React & Next.js</span>
                       <span className="px-2.5 py-1 bg-cardBg border border-borderPrimary rounded-lg text-[13px] font-medium transition-colors hover:border-accent/30 select-none">REST APIs</span>
-                      <span className="px-2.5 py-1 bg-cardBg border border-borderPrimary rounded-lg text-[13px] font-medium transition-colors hover:border-accent/30 select-none">Express</span>
                     </div>
                   </div>
                   <div className="space-y-1.5">
-                    <span className="text-accent text-[11px] font-bold uppercase tracking-wider">Identity Security</span>
+                    <span className="text-accent text-[11px] font-bold uppercase tracking-wider">Security & Auth</span>
                     <div className="flex gap-2">
-                      <span className="px-2.5 py-1 bg-cardBg border border-borderPrimary rounded-lg text-[13px] font-medium transition-colors hover:border-accent/30 select-none">Authentication</span>
+                      <span className="px-2.5 py-1 bg-cardBg border border-borderPrimary rounded-lg text-[13px] font-medium transition-colors hover:border-accent/30 select-none">JWT Auth</span>
+                      <span className="px-2.5 py-1 bg-cardBg border border-borderPrimary rounded-lg text-[13px] font-medium transition-colors hover:border-accent/30 select-none">Token Rotation</span>
                     </div>
                   </div>
                   <div className="space-y-1.5">
-                    <span className="text-accent text-[11px] font-bold uppercase tracking-wider">Engine & Storage</span>
+                    <span className="text-accent text-[11px] font-bold uppercase tracking-wider">Data & Cache</span>
                     <div className="flex gap-2 flex-wrap">
-                      <span className="px-2.5 py-1 bg-cardBg border border-borderPrimary rounded-lg text-[13px] font-medium transition-colors hover:border-accent/30 select-none">Database Design</span>
+                      <span className="px-2.5 py-1 bg-cardBg border border-borderPrimary rounded-lg text-[13px] font-medium transition-colors hover:border-accent/30 select-none">Oracle DB</span>
+                      <span className="px-2.5 py-1 bg-cardBg border border-borderPrimary rounded-lg text-[13px] font-medium transition-colors hover:border-accent/30 select-none">MySQL & PGSQL</span>
+                      <span className="px-2.5 py-1 bg-cardBg border border-borderPrimary rounded-lg text-[13px] font-medium transition-colors hover:border-accent/30 select-none">MongoDB</span>
                       <span className="px-2.5 py-1 bg-cardBg border border-borderPrimary rounded-lg text-[13px] font-medium transition-colors hover:border-accent/30 select-none">Redis</span>
-                      <span className="px-2.5 py-1 bg-cardBg border border-borderPrimary rounded-lg text-[13px] font-medium transition-colors hover:border-accent/30 select-none">Node.js</span>
                     </div>
                   </div>
                 </div>
@@ -113,7 +115,7 @@ const EngineeringFocus = () => {
           </div>
         </motion.div>
 
-        {/* DevOps Journey Card */}
+        {/* DevOps & Infrastructure Card */}
         <motion.div
           variants={cardVariants}
           initial="hidden"
@@ -129,11 +131,11 @@ const EngineeringFocus = () => {
                   <Workflow size={24} />
                 </span>
                 <h3 className="font-heading text-[24px] font-bold text-textPrimary tracking-tight">
-                  DevOps Journey
+                  DevOps & Infrastructure
                 </h3>
               </div>
               <p className="text-[17px] font-body text-textSecondary leading-relaxed">
-                {"I'm building practical experience with deployment pipelines, containerization, Linux environments, and cloud infrastructure."}
+                I focus on automating build workflows, containerizing applications, and configuring Linux servers to improve development speed and deployment stability.
               </p>
             </div>
             <div className="flex flex-wrap gap-2 pt-2 mb-6">
@@ -159,7 +161,7 @@ const EngineeringFocus = () => {
           </div>
         </motion.div>
 
-        {/* AI Engineering Card */}
+        {/* Practical AI Systems Card */}
         <motion.div
           variants={cardVariants}
           initial="hidden"
@@ -175,11 +177,11 @@ const EngineeringFocus = () => {
                   <Brain size={24} />
                 </span>
                 <h3 className="font-heading text-[24px] font-bold text-textPrimary tracking-tight">
-                  AI Engineering
+                  Full-Stack AI Systems
                 </h3>
               </div>
               <p className="text-[17px] font-body text-textSecondary leading-relaxed">
-                {"I'm exploring intelligent applications using Python, LLMs, AI APIs, and retrieval-based systems."}
+                I build applications powered by language models and vector databases, integrating practical AI workflows and data orchestration libraries.
               </p>
             </div>
             <div className="flex flex-wrap gap-2 pt-2 mb-6">

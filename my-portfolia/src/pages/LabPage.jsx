@@ -101,9 +101,9 @@ const LabPage = () => {
   ];
 
   const learningDashboard = [
-    { topic: 'Docker', status: 'Using in Production', color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20' },
-    { topic: 'Kubernetes', status: 'Learning', color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20' },
-    { topic: 'AI Engineering', status: 'Practicing', color: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20' },
+    { topic: 'Docker', status: 'Active Use', color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20' },
+    { topic: 'Kubernetes', status: 'Exploring', color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20' },
+    { topic: 'Full-Stack AI Systems', status: 'Experimenting', color: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20' },
     { topic: 'System Design', status: 'Building', color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20' }
   ];
 

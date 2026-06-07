@@ -87,12 +87,11 @@ const CircularProfile = ({ image, className = '' }) => {
         {/* 5. AI SYSTEMS CARD (Bottom-Center) */}
         <MetricCard
           category="AI Systems"
-          value="LLMs & Agents"
+          value="AI Workflows"
           icon={Brain}
           className="bottom-[100px] left-1/2 -translate-x-1/2"
           delay={0.3}
         />
-
       </div>
     </div>
   );

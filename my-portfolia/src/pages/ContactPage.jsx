@@ -57,7 +57,7 @@ const ContactPage = () => {
     },
     {
       q: 'What are you currently learning?',
-      a: 'I am actively expanding my skillset in advanced DevOps, cloud orchestration (Docker, CI/CD, Kubernetes), and AI application engineering.'
+      a: 'I am actively refining my workflows in advanced DevOps, full-stack application development, and integrating full-stack AI systems.'
     }
   ];
 
@@ -66,7 +66,7 @@ const ContactPage = () => {
     { text: 'Backend Development Projects', active: true },
     { text: 'Full Stack Freelance Work', active: true },
     { text: 'Open Source Collaboration', active: true },
-    { text: 'Learning DevOps & AI Engineering', active: false }
+    { text: 'Refining Full-Stack AI Systems', active: false }
   ];
 
   const techStack = [
@@ -103,7 +103,7 @@ const ContactPage = () => {
 
         <div className="flex gap-4 justify-center pt-4">
           <a
-            href="mailto:megakhalid@gmail.com"
+            href="mailto:khalidabdillahi30@gmail.com"
             className="rounded-xl bg-lightAccent dark:bg-darkAccent hover:opacity-90 px-6 py-2.5 font-mono text-sm text-white font-bold transition duration-300 shadow-md"
           >
             Email Me
@@ -129,8 +129,8 @@ const ContactPage = () => {
           </div>
           <div className="space-y-1">
             <h3 className="font-mono text-sm font-bold text-lightText dark:text-darkText">Mail</h3>
-            <a href="mailto:megakhalid@gmail.com" className="text-xs text-lightAccent dark:text-darkAccent hover:underline block truncate font-mono">
-              megakhalid@gmail.com
+            <a href="mailto:khalidabdillahi30@gmail.com" className="text-xs text-lightAccent dark:text-darkAccent hover:underline block truncate font-mono">
+              khalidabdillahi30@gmail.com
             </a>
             <p className="text-[10px] text-slate-450 dark:text-slate-500 pt-1">Replies within 24 hours</p>
           </div>

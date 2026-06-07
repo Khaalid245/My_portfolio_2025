@@ -1,33 +1,28 @@
 import { motion } from 'framer-motion';
-import aboutImg from '../assets/khalid2.jpg';
+import aboutImg from '../assets/aboutme.png';
 import { FaServer, FaDocker, FaBrain, FaCompass } from 'react-icons/fa';
 
 const AboutMePage = () => {
   const journeyTimeline = [
     {
-      year: '2022',
-      title: 'Started learning web development',
-      description: 'Discovered curiosity about digital products, building basic interfaces and coding foundations.'
-    },
-    {
       year: '2023',
-      title: 'Built full-stack projects',
-      description: 'Ventured into React, Node.js, and backend integrations, creating end-to-end applications.'
+      title: 'Started learning web development',
+      description: 'Began exploring software development by learning HTML, CSS, JavaScript, and building simple web interfaces while developing curiosity about technology and digital products.'
     },
     {
       year: '2024',
-      title: 'Focused on backend engineering',
-      description: 'Delved deep into databases, API performance, secure authentication mechanisms, and server-side state.'
+      title: 'Built full-stack projects',
+      description: 'Started working with React.js, Node.js, Django REST Framework, and databases to build complete web applications and strengthen backend development skills.'
     },
     {
       year: '2025',
-      title: 'Developed backend & course management systems',
-      description: 'Engineered specialized systems (course management, authentication layers, high-throughput APIs) at Ramas Inc.'
+      title: 'Focused on backend systems & scalable applications',
+      description: 'Worked on backend-focused projects involving APIs, authentication systems, databases, deployment workflows, and frontend-backend integration through internships and practical projects.'
     },
     {
       year: '2026',
-      title: 'Expanding into DevOps & AI systems',
-      description: 'Studying Docker containment, automated CI/CD pipelines, cloud infrastructure orchestration, and LLM integrations.'
+      title: 'Improving DevOps & Full-Stack AI Systems',
+      description: 'Currently learning Docker, CI/CD workflows, Linux environments, cloud deployment, and exploring full-stack AI systems, LLM APIs, and modern automation workflows.'
     }
   ];
 
@@ -39,13 +34,13 @@ const AboutMePage = () => {
     },
     {
       icon: <FaDocker className="text-3xl text-lightAccent dark:text-darkAccent" />,
-      title: 'DevOps',
-      description: 'Learning Docker containers, CI/CD pipeline automations, Linux administration, and deployment workflows.'
+      title: 'DevOps & Infrastructure',
+      description: 'Automating builds, configuring Linux servers, containerizing services, and improving infrastructure stability.'
     },
     {
       icon: <FaBrain className="text-3xl text-lightAccent dark:text-darkAccent" />,
-      title: 'AI Engineering',
-      description: 'Exploring machine learning abstractions, LLM integrations, and building intelligent agents.'
+      title: 'Full-Stack AI Systems',
+      description: 'Integrating language models, vector databases, and AI workflows into complete web systems.'
     }
   ];
 
@@ -53,17 +48,17 @@ const AboutMePage = () => {
     <div className="max-w-4xl mx-auto space-y-24 py-10">
       
       {/* Section 1 - Introduction */}
-      <section className="flex flex-col lg:flex-row items-center gap-12 border-b border-slate-200 dark:border-slate-800/60 pb-16">
+      <section className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16 border-b border-slate-200 dark:border-slate-800/60 pb-16">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-full lg:w-1/3 flex justify-center"
+          className="w-full lg:w-[35%] flex justify-center lg:justify-start"
         >
           <img 
             src={aboutImg} 
             alt="Khalid Abdillahi" 
-            className="w-48 h-48 lg:w-60 lg:h-60 rounded-2xl object-cover border border-slate-200 dark:border-slate-800 grayscale hover:grayscale-0 transition duration-500 shadow-xl"
+            className="w-64 h-88 lg:w-80 lg:h-[440px] rounded-2xl object-cover border border-slate-200 dark:border-slate-800 transition duration-500 shadow-xl"
           />
         </motion.div>
         
@@ -71,22 +66,27 @@ const AboutMePage = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="w-full lg:w-2/3 space-y-6 text-center lg:text-left"
+          className="w-full lg:w-[65%] space-y-6 text-center lg:text-left lg:max-w-xl"
         >
           <div>
             <h1 className="text-4xl lg:text-5xl font-bold tracking-tight text-lightText dark:text-darkText font-mono">
               About Me
             </h1>
-            <p className="mt-3 text-lg font-medium text-lightAccent dark:text-darkAccent">
-              {"I'm a software engineer focused on building practical systems that solve real-world problems."}
+            <p className="mt-3 text-lg font-medium text-lightAccent dark:text-darkAccent leading-relaxed">
+              I’m a software engineering student and backend-focused full-stack developer passionate about building scalable web applications and learning how modern systems work behind the scenes.
             </p>
           </div>
           <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-            My journey into software engineering started with curiosity about how digital products work behind the scenes.
-            Over time, I became increasingly interested in backend systems, APIs, databases, and the infrastructure that powers modern applications.
+            My journey in technology expanded after receiving the Mastercard Foundation Scholarship, which gave me the opportunity to grow, collaborate with diverse communities, and continue improving my skills in software engineering.
           </p>
           <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-            Today, I build full-stack applications while expanding my skills in DevOps and AI engineering, ensuring systems are not only robustly engineered but also scalable and highly maintainable.
+            I’ve worked on projects involving React.js, Django REST Framework, Node.js, APIs, databases, and deployment workflows. I enjoy backend development, system design, DevOps workflows, and exploring modern AI-powered applications.
+          </p>
+          <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+            Currently, I’m improving my skills in backend systems, cloud workflows, and full-stack AI engineering through practical projects and continuous learning.
+          </p>
+          <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-semibold">
+            I enjoy solving real-world problems, building systems, and continuously improving as an engineer.
           </p>
         </motion.div>
       </section>

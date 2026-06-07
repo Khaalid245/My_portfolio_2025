@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { EXPERIENCES, PROJECTS } from '../constants';
 import { Link } from 'react-router-dom';
-import { FaDownload, FaBriefcase, FaGraduationCap, FaCode, FaAward, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaDownload, FaBriefcase, FaGraduationCap, FaCode, FaAward, FaExternalLinkAlt, FaPrint, FaUsers, FaLanguage } from 'react-icons/fa';
 
 const ResumePage = () => {
   const handlePrint = () => {
@@ -9,37 +9,55 @@ const ResumePage = () => {
   };
 
   const skillsData = [
-    { category: 'Frontend', skills: ['React', 'Next.js', 'TypeScript', 'Tailwind'] },
-    { category: 'Backend', skills: ['Node.js', 'Express', 'Django', 'REST APIs'] },
-    { category: 'Database', skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis'] },
-    { category: 'DevOps', skills: ['Docker', 'Linux', 'GitHub Actions'] }
+    { category: 'Frontend Development', skills: ['React.js', 'JavaScript (ES6+)', 'Tailwind CSS', 'HTML5', 'CSS3', 'Responsive Design'] },
+    { category: 'Backend Development', skills: ['Python', 'Django REST Framework (DRF)', 'Flask', 'Node.js', 'Express.js', 'REST APIs'] },
+    { category: 'Databases & Infra', skills: ['MySQL', 'MongoDB', 'Firebase', 'Docker', 'Git', 'Linux', 'Deployment Workflows'] },
+    { category: 'Focus Areas', skills: ['AI Engineering Fundamentals', 'Intelligent Systems', 'Scalable Web Apps', 'Technical Documentation'] }
   ];
 
   const certifications = [
-    { title: 'Meta Front-End Developer', issuer: 'Coursera / Meta' },
-    { title: 'Google Data Analytics', issuer: 'Coursera / Google' },
-    { title: 'Docker Fundamentals', issuer: 'Docker' }
+    { title: 'Python Programming', issuer: 'Udemy' },
+    { title: 'Django REST Framework (DRF)', issuer: 'Coursera' },
+    { title: 'GitHub Actions & CI/CD Fundamentals', issuer: 'Coursera' },
+    { title: 'Database Design', issuer: 'DataCamp' },
+    { title: 'Linux & Git Fundamentals', issuer: 'Udemy' }
   ];
 
   return (
     <div className="max-w-4xl mx-auto space-y-16 py-10 print-container">
       
       {/* Hero Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 border-b border-slate-200 dark:border-slate-800 pb-8 print-section">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-slate-200 dark:border-slate-800 pb-8 print-section">
         <div>
-          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight text-lightText dark:text-darkText font-mono">
-            Resume
+          <h1 className="text-4xl font-bold tracking-tight text-lightText dark:text-darkText font-mono">
+            Khalid Abdirahman Abdillahi
           </h1>
-          <p className="mt-2 text-slate-500 dark:text-slate-400">
-            Experience, education, projects, and technical expertise.
+          <p className="mt-1.5 text-sm font-semibold text-lightAccent dark:text-darkAccent font-mono">
+            Backend Developer | Full-Stack Developer
           </p>
+          <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
+            <span>📞 +917609958608</span>
+            <span>✉️ khalidabdillahi30@gmail.com</span>
+            <span>📍 Bhubaneswar, Odisha, India</span>
+          </div>
+          <div className="mt-2.5 flex gap-4 text-xs font-mono">
+            <a href="https://github.com/Khaalid245" target="_blank" rel="noopener noreferrer" className="text-lightAccent dark:text-darkAccent hover:underline">GitHub</a>
+            <a href="https://www.linkedin.com/in/khalid-abdillahi-269871276/" target="_blank" rel="noopener noreferrer" className="text-lightAccent dark:text-darkAccent hover:underline">LinkedIn</a>
+          </div>
         </div>
-        <div className="no-print">
-          <button
-            onClick={handlePrint}
+        <div className="no-print flex flex-wrap gap-3">
+          <a
+            href="/resume.pdf"
+            download="Khalid_Abdirahman_Resume.pdf"
             className="inline-flex items-center gap-2 rounded border border-lightAccent dark:border-darkAccent bg-lightAccent/10 dark:bg-darkAccent/10 hover:bg-lightAccent/20 dark:hover:bg-darkAccent/20 px-5 py-2.5 font-mono text-sm text-lightText dark:text-darkText hover:text-lightAccent dark:hover:text-darkAccent transition duration-300 shadow-md"
           >
-            <FaDownload /> Download PDF Resume
+            <FaDownload /> Download PDF
+          </a>
+          <button
+            onClick={handlePrint}
+            className="inline-flex items-center gap-2 rounded border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard hover:bg-slate-100 dark:hover:bg-slate-800 px-5 py-2.5 font-mono text-sm text-lightText dark:text-darkText transition duration-300 shadow-md"
+          >
+            <FaPrint /> Print Resume
           </button>
         </div>
       </div>
@@ -111,18 +129,18 @@ const ResumePage = () => {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
             <div>
               <h3 className="text-lg font-bold text-lightText dark:text-darkText font-mono">
-                Bachelor of Science in Computer Science
+                Bachelor of Science in Software Engineering
               </h3>
               <p className="text-sm font-semibold text-lightAccent dark:text-darkAccent">
-                Amoud University
+                African Leadership University – Kigali, Rwanda
               </p>
             </div>
             <span className="text-xs font-mono text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-900 px-2 py-1 rounded border border-slate-200 dark:border-slate-800 print-pill">
-              2020 — 2024
+              May 2023 — July 2026
             </span>
           </div>
           <p className="mt-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            Specialized in software development paradigms, relational database normalization, computer networks, and algorithms. Graduated with a strong foundation in backend integration patterns and systems design.
+            Focused on backend systems, API development, and deployment workflows using React.js, Node.js, Python, and Django REST Framework (DRF).
           </p>
         </motion.div>
       </section>
@@ -235,6 +253,100 @@ const ResumePage = () => {
           >
             Browse all case studies and detailed systems architecture &rarr;
           </Link>
+        </div>
+      </section>
+
+      {/* Section 6 - Leadership & Community Engagement */}
+      <section className="print-section">
+        <h2 className="flex items-center gap-3 text-2xl font-bold text-lightText dark:text-darkText font-mono mb-8 border-b border-slate-200/60 dark:border-slate-800/40 pb-2">
+          <FaUsers className="text-lightAccent dark:text-darkAccent" /> Leadership & Community
+        </h2>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="print-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-6"
+          >
+            <h3 className="text-base font-bold text-lightText dark:text-darkText font-mono">
+              Volunteer Teacher
+            </h3>
+            <p className="text-xs font-semibold text-lightAccent dark:text-darkAccent mt-1">
+              Primary School, Somalia
+            </p>
+            <p className="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Supported mathematics learning within under-resourced educational environments, helping young learners build a strong numerical foundation.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="print-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-6"
+          >
+            <h3 className="text-base font-bold text-lightText dark:text-darkText font-mono">
+              Technology Mentor
+            </h3>
+            <p className="text-xs font-semibold text-lightAccent dark:text-darkAccent mt-1">
+              Youth Community
+            </p>
+            <p className="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Mentored students in programming fundamentals and digital learning pathways, fostering interest in technology and software careers.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Section 7 - Languages & Interests */}
+      <section className="print-section">
+        <h2 className="flex items-center gap-3 text-2xl font-bold text-lightText dark:text-darkText font-mono mb-8 border-b border-slate-200/60 dark:border-slate-800/40 pb-2">
+          <FaLanguage className="text-lightAccent dark:text-darkAccent" /> Languages & Interests
+        </h2>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="print-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-6"
+          >
+            <h3 className="text-sm font-bold text-lightText dark:text-darkText font-mono uppercase tracking-wider mb-4 border-b border-slate-100 dark:border-slate-800 pb-2">
+              Languages
+            </h3>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center text-xs font-mono">
+                <span className="text-lightText dark:text-darkText font-bold">Somali</span>
+                <span className="text-slate-500 dark:text-slate-400">Native</span>
+              </div>
+              <div className="flex justify-between items-center text-xs font-mono">
+                <span className="text-lightText dark:text-darkText font-bold">English</span>
+                <span className="text-slate-500 dark:text-slate-400">Fluent</span>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="print-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-6"
+          >
+            <h3 className="text-sm font-bold text-lightText dark:text-darkText font-mono uppercase tracking-wider mb-4 border-b border-slate-100 dark:border-slate-800 pb-2">
+              Interests
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {['Software Engineering', 'AI & Emerging Tech', 'Football', 'Travel'].map((interest, iIndex) => (
+                <span
+                  key={iIndex}
+                  className="rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs font-mono text-slate-600 dark:text-slate-400"
+                >
+                  {interest}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 

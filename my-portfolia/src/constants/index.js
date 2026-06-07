@@ -5,14 +5,14 @@ import project4 from "../assets/projects/project-4.jpg";
 
 export const HERO_CONTENT = {
   title: "Khalid Abdillahi",
-  subtitle: "Full-Stack Systems Engineer",
-  specialization: "Backend Systems • DevOps • AI Engineering",
-  description: "I build backend systems, APIs, and modern web applications that solve operational problems and scale with growing user needs. I'm interested in designing maintainable software, improving developer workflows, and building products that create measurable value.",
+  subtitle: "Full-Stack AI Systems Engineer",
+  specialization: "Backend & DevOps • Full-Stack AI Systems",
+  description: "Backend-focused full-stack developer building modern AI-powered systems and scalable applications.",
   stats: [
     { label: "Experience", value: "2+ Years" },
     { label: "Systems Built", value: "10+" },
     { label: "Primary Focus", value: "Backend & DevOps" },
-    { label: "AI Integration", value: "LLMs & Agents" }
+    { label: "AI Integration", value: "Full-Stack AI Systems" }
   ]
 };
 
@@ -22,95 +22,85 @@ export const ENGINEERING_FOCUS = [
     skills: ["REST APIs", "Authentication", "Database Design", "Scalable Architecture"]
   },
   {
-    title: "DevOps",
-    skills: ["Docker", "CI/CD Pipeline", "Linux Administration", "Cloud Deployment"]
+    title: "DevOps & Infrastructure",
+    skills: ["Docker", "CI/CD Pipelines", "Linux Shell", "Nginx Configuration"]
   },
   {
-    title: "AI Engineering",
-    skills: ["Python", "LLMs", "AI Integrations", "Machine Learning"]
+    title: "Full-Stack AI Systems",
+    skills: ["Python", "LLM APIs", "Vector Databases", "AI Workflows"]
   }
 ];
 
 export const PROJECTS = [
   {
-    title: "Distributed E-Commerce Orchestration Engine",
+    title: "Alif Monitoring System (Capstone Project)",
     image: project1,
-    problem: "Pessimistic concurrency conflicts and database read lockups during high checkout volume.",
-    solution: "Implemented pessimistic row-locking on product inventory and configured a Redis read-through cache.",
-    stack: ["Node.js", "Express", "Redis", "MySQL", "JWT"],
-    architecture: "Express Gateway / Redis Catalog Cache / MySQL InnoDB Lock Layer",
-    link: "#"
+    problem: "Educational institutions struggle to monitor student attendance and identify dropout risks early.",
+    solution: "Developed an early warning capstone platform utilizing React.js and Django REST Framework to automate attendance tracking workflows and identify risk factors.",
+    stack: ["React.js", "Tailwind CSS", "Django REST Framework", "MySQL", "Docker"],
+    architecture: "React.js Client / Django REST Framework Backend / MySQL Database / Docker",
+    link: "https://github.com/Khaalid245?tab=repositories"
   },
   {
-    title: "Asynchronous Analytics & Event Pipeline",
+    title: "E-Commerce Platform",
     image: project2,
-    problem: "Analytics ingestion query paths causing write contention and stalling learner progress trackers.",
-    solution: "Designed index-matched schemas, offloaded calculations asynchronously, and normalized key tables.",
-    stack: ["React.js", "Flask", "SQLAlchemy", "MySQL", "Tailwind CSS"],
-    architecture: "Flask Queue / MySQL Assessment Indexes / React Progress Dashboard",
-    link: "#"
-  },
-  {
-    title: "Edge-Optimized Static Asset Delivery Pipeline",
-    image: project3,
-    problem: "High Largest Contentful Paint (LCP) latency and missing edge cache efficiency.",
-    solution: "Configured automated WebP compilation, aggressive cache headers, and Cloudflare CDN proxy.",
-    stack: ["React.js", "Tailwind CSS", "Vite", "Framer Motion"],
-    architecture: "Vite Static Build / Cloudflare CDN Edge Cache / GitHub Actions CI",
-    link: "#"
-  },
-  {
-    title: "Decoupled Content Delivery API & Gateway",
-    image: project4,
-    problem: "Monolithic token vulnerabilities (CSRF/XSS) and coupled frontend deployment chains.",
-    solution: "Decoupled the gateway with Express, strict CORS policies, and secure HTTP-only cookie-based rotation.",
-    stack: ["React.js", "Express", "MySQL", "Sequelize", "Tailwind CSS"],
-    architecture: "Express Gateway API / Decoupled React Client / Sequelize ORM",
-    link: "#"
+    problem: "Creating a secure, containerized store with smooth checkout flows, user authentication, and product catalog actions.",
+    solution: "Engineered a reliable online shopping catalog and order pipeline using React.js and Django REST Framework, built with Docker for consistent multi-stage deployments.",
+    stack: ["React.js", "Tailwind CSS", "Django REST Framework", "MySQL", "Docker"],
+    architecture: "React.js / Django REST Framework API / MySQL / Docker Engine",
+    link: "https://github.com/Khaalid245?tab=repositories"
   }
 ];
 
 export const EXPERIENCES = [
   {
-    year: "2024 - Present",
-    role: "Distributed Systems & Full-Stack Engineer",
-    company: "Ramas Inc.",
+    year: "Oct 2025 — Present",
+    role: "Backend Developer Intern",
+    company: "InfinityTech",
     bullets: [
-      "Architected event-driven backend microservices using Node.js and Redis.",
-      "Re-engineered MongoDB database indexes and query paths to eliminate in-memory sorting, reducing query execution latency by 40%.",
-      "Introduced semantic RESTful API versioning to decouple frontend components, enabling zero-downtime client-facing migrations."
+      "Currently working on backend systems, scalable APIs, authentication workflows, and deployment practices for full-stack applications.",
+      "Gaining hands-on experience with Docker, CI/CD workflows, database optimization, and frontend-backend integration in real development environments."
     ],
-    technologies: ["Node.js", "Express", "MongoDB", "Redis", "React"]
+    technologies: ["Django REST Framework", "Docker", "GitHub Actions", "MySQL", "React.js", "APIs"]
   },
   {
-    year: "2022 - 2023",
-    role: "Full-Stack Engineer",
-    company: "dhanbaal",
+    year: "Jan 2024 — Sep 2024",
+    role: "Backend Developer Intern",
+    company: "InfinityTech",
     bullets: [
-      "Engineered asset-delivery pipelines and bundle splitting in Next.js, reducing Largest Contentful Paint (LCP) from 3.2s to 1.1s.",
-      "Co-designed relational MySQL schemas and matched query execution plans with proper indexes to minimize join query overhead."
+      "Worked on backend development, REST APIs, and database integration for web applications using Django REST Framework and Node.js.",
+      "Collaborated with frontend developers to improve API communication and application performance while learning deployment workflows and debugging practices."
     ],
-    technologies: ["Next.js", "React.js", "Tailwind CSS", "MySQL"]
+    technologies: ["Django REST Framework", "Node.js", "MySQL", "REST APIs", "React.js", "Git"]
   },
   {
-    year: "2022 - 2023",
-    role: "Backend Engineer",
-    company: "Mega",
+    year: "2024 — Present",
+    role: "Freelance Full-Stack Developer",
+    company: "Remote",
     bullets: [
-      "Designed and optimized relational databases using PostgreSQL and built robust RESTful APIs in Python/Django.",
-      "Decoupled monolithic services into domain-driven endpoints, improving maintainability, increasing query throughput, and expanding unit test coverage."
+      "Built and deployed full-stack web applications for learning, business, and educational projects.",
+      "Worked on frontend interfaces, backend APIs, authentication systems, and responsive user experiences while continuously improving development and deployment skills."
     ],
-    technologies: ["Python", "Django", "PostgreSQL", "React.js"]
+    technologies: ["React.js", "Tailwind CSS", "Django", "Node.js", "MySQL", "Docker"]
   },
   {
-    year: "2023 - 2023",
-    role: "Software Engineer",
-    company: "Somali academy",
+    year: "Aug 2024 — Jan 2025",
+    role: "Graphic Designer",
+    company: "GAO Uganda Limited",
     bullets: [
-      "Designed dynamic progress tracking state machines and built asynchronous task offloaders using Flask and Node.js.",
-      "Restructured MongoDB collections from highly nested structures to referenced models, reducing write amplification and increasing analytics throughput."
+      "Created visual designs and digital content for educational and media-related projects.",
+      "Worked on branding materials, image editing, layout design, and creative communication."
     ],
-    technologies: ["Flask", "React", "Node.js", "MongoDB", "SQL"]
+    technologies: ["Adobe Photoshop", "Canva", "Graphic Design"]
+  },
+  {
+    year: "Sep 2020 — Apr 2024",
+    role: "Camera Man",
+    company: "Mega Media Production",
+    bullets: [
+      "Supported media production activities including video recording, editing support, and event coverage while working in collaborative production environments."
+    ],
+    technologies: ["Camera Operation", "Adobe Photoshop", "Media Production"]
   }
 ];
 
@@ -142,7 +132,7 @@ export const LATEST_WRITING = [
 ];
 
 export const ABOUT_PREVIEW = {
-  text: "I enjoy building software that solves real operational problems. From backend APIs to deployment workflows, I'm focused on becoming a systems-oriented engineer.",
+  text: "I’m a software engineering student and backend-focused developer passionate about building scalable web applications and learning how modern systems work behind the scenes.",
   link: "#"
 };
 
@@ -155,5 +145,5 @@ export const CONTACT_CTA = {
     "Collaboration"
   ],
   buttonText: "Contact Me",
-  email: "megakhalid@gmail.com"
+  email: "khalidabdillahi30@gmail.com"
 };

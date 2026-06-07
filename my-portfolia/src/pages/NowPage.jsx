@@ -11,7 +11,7 @@ const NowPage = () => {
     {
       title: 'Learning',
       icon: <FaBrain className="text-xl text-lightAccent dark:text-darkAccent" />,
-      desc: 'Kubernetes container orchestration, Service Mesh configs, vector databases, and semantic LLM embed embeddings.'
+      desc: 'Docker environment configurations, server automation scripting, database performance tuning, and exploring semantic search.'
     },
     {
       title: 'Reading',
@@ -26,7 +26,7 @@ const NowPage = () => {
     {
       title: 'Recent Experiments',
       icon: <FaFlask className="text-xl text-lightAccent dark:text-darkAccent" />,
-      desc: 'Writing optimized multi-stage Dockerfiles for Node APIs, compiling TypeScript edges caching, and testing prompt JSON extraction filters.'
+      desc: 'Writing optimized multi-stage Dockerfiles for Node APIs, setting up Nginx reverse proxies, and querying vector collections for local search.'
     }
   ];
 

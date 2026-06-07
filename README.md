@@ -67,7 +67,7 @@ Through this portfolio, I aim to demonstrate my ability to deliver high-quality 
 
 Feel free to reach out to discuss projects, opportunities, or collaborations:
 
-- **Email**: megakhalid32@gmail.com 
+- **Email**: khalidabdillahi30@gmail.com 
 - **LinkedIn**:https://www.linkedin.com/in/khalid-abdillahi-269871276/
 - **GitHub**:https://github.com/Khaalid245
 

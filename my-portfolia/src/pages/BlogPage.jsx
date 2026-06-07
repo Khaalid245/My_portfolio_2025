@@ -70,7 +70,7 @@ const BlogPage = () => {
     { year: '2023', label: 'Learning JavaScript' },
     { year: '2024', label: 'Building Full Stack Applications' },
     { year: '2025', label: 'Backend Systems & APIs' },
-    { year: '2026', label: 'Docker • DevOps • AI Engineering' }
+    { year: '2026', label: 'Docker • DevOps • Full-Stack AI Systems' }
   ];
 
   const handleSubscribe = (e) => {
@@ -107,7 +107,7 @@ const BlogPage = () => {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="max-w-2xl mx-auto text-lg text-slate-500 dark:text-slate-400"
         >
-          Thoughts on backend development, system design, DevOps, AI engineering, and lessons learned while building software.
+          Thoughts on backend development, system design, DevOps workflows, full-stack AI systems, and lessons learned while building software.
         </motion.p>
         
         {/* Stats Grid */}
@@ -331,7 +331,7 @@ const BlogPage = () => {
                 Follow My Engineering Journey
               </h2>
               <p className="max-w-xl mx-auto text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                I share practical lessons from projects, backend architecture, DevOps experiments, and AI engineering.
+                I share practical lessons from projects, backend architecture, DevOps experiments, and full-stack AI systems.
               </p>
               
               <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto pt-2">

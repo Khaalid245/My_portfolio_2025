@@ -1,6 +1,8 @@
 import Hero from '../components/Hero';
 import EngineeringFocus from '../components/EngineeringFocus';
+import Technologies from '../components/Technologies';
 import FeaturedProjects from '../components/FeaturedProjects';
+import Experience from '../components/Experience';
 import { LATEST_WRITING } from '../constants';
 import { motion } from 'framer-motion';
 import Contact from '../components/Contact';
@@ -21,8 +23,14 @@ const HomePage = () => {
       {/* Engineering Focus Section */}
       <EngineeringFocus />
 
+      {/* Technical Stack Section */}
+      <Technologies />
+
       {/* Featured Projects Preview */}
       <FeaturedProjects />
+
+      {/* Career Experience Timeline Section */}
+      <Experience />
 
       {/* Featured Writing Preview */}
       <div className="border-b border-borderPrimary pb-16">

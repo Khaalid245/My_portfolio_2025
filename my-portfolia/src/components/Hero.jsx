@@ -25,9 +25,8 @@ const Hero = () => {
       },
     },
   };
-
   return (
-    <div className="border-b border-borderPrimary py-[120px] px-8 lg:px-20 lg:mb-20">
+    <div className="border-b border-borderPrimary pt-6 pb-20 px-8 lg:px-20 lg:mb-20">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -35,7 +34,7 @@ const Hero = () => {
         className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 w-full"
       >
         {/* LEFT COLUMN: Clean Typography, Natural Language Intro, CTAs */}
-        <div className="w-full lg:max-w-[460px] flex flex-col items-center lg:items-start text-center lg:text-left">
+        <div className="w-full lg:max-w-[580px] flex flex-col items-center lg:items-start text-center lg:text-left">
           
           {/* Hello, I'm */}
           <motion.span 
@@ -58,15 +57,15 @@ const Hero = () => {
             variants={itemVariants} 
             className="text-2xl lg:text-3xl font-heading font-semibold text-textSecondary mb-7"
           >
-            Full Stack Engineer
+            Full-Stack AI Systems Engineer
           </motion.p>
-
+          
           {/* Description Paragraph */}
           <motion.p
             variants={itemVariants}
-            className="text-base text-textSecondary leading-loose max-w-[480px] font-normal mb-9"
+            className="text-base text-textSecondary leading-loose max-w-[520px] font-normal mb-9"
           >
-            I enjoy building reliable backend systems and modern web applications that solve practical problems. My current focus is designing scalable APIs, backend services, DevOps workflows, and exploring AI systems.
+            Backend-focused full-stack developer building modern AI-powered systems and scalable applications.
           </motion.p>
 
           {/* TABLET / MOBILE PORTRAIT (repositioned under description with breathing room) */}
@@ -86,7 +85,7 @@ const Hero = () => {
               to="/portfolio"
               variant="primary"
             >
-              Explore Work &rarr;
+              View Projects &rarr;
             </Button>
             <Button
               to="/about/resume"

@@ -12,7 +12,7 @@ import {
 
 const PortfolioPage = () => {
   const stats = [
-    { label: '10+ Projects', icon: <FaFolderOpen /> },
+    { label: 'Engineering Projects', icon: <FaFolderOpen /> },
     { label: 'Backend Systems', icon: <FaServer /> },
     { label: 'REST APIs', icon: <FaDatabase /> },
     { label: 'Full Stack Apps', icon: <FaGlobe /> },
@@ -112,18 +112,18 @@ const PortfolioPage = () => {
   ];
 
   const exploringCards = [
-    { title: 'Docker Learning', desc: 'Configuring multi-stage container builds to decrease static production bundles.' },
-    { title: 'AI Engineering', desc: 'Developing context-aware agent chains using semantic retrieval models.' },
-    { title: 'Machine Learning', desc: 'Exploring data ingestion pipelines and parameter tuning heuristics.' },
+    { title: 'Containerization', desc: 'Configuring multi-stage container builds to optimize static production bundles.' },
+    { title: 'Full-Stack AI Integration', desc: 'Integrating large language models and vector search into API service layers.' },
+    { title: 'Data Pipeline Design', desc: 'Designing efficient data processing scripts and ingestion pipelines for analytics.' },
     { title: 'System Design', desc: 'Investigating message broker patterns, event-sourcing structures, and load balancing.' },
     { title: 'Open Source', desc: 'Contributing fixes to database connectors and library tooling repositories.' }
   ];
 
   return (
-    <div className="space-y-24 py-10">
+    <div className="space-y-16 py-4">
       
       {/* 1. Portfolio Hero */}
-      <section className="text-center space-y-6 pb-12 border-b border-slate-200 dark:border-slate-800">
+      <section className="text-center space-y-4 pb-8 border-b border-slate-200 dark:border-slate-800">
         <motion.h1 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -351,11 +351,12 @@ const PortfolioPage = () => {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              whileHover={{ y: -4 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-6 space-y-4"
+              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-6 space-y-4 hover:border-lightAccent/40 dark:hover:border-darkAccent/40 hover:shadow-lg transition-all duration-300 cursor-default group"
             >
               <div className="flex items-center gap-3">
-                <span className="p-2 bg-lightAccent/10 dark:bg-darkAccent/10 rounded-lg border border-slate-100 dark:border-slate-800">
+                <span className="p-2 bg-lightAccent/10 dark:bg-darkAccent/10 rounded-lg border border-slate-100 dark:border-slate-800 group-hover:scale-105 transition-transform duration-300">
                   {cat.icon}
                 </span>
                 <h3 className="font-mono text-sm font-bold text-lightText dark:text-darkText leading-tight">
@@ -365,7 +366,7 @@ const PortfolioPage = () => {
               <ul className="space-y-2 pl-2 border-l border-slate-100 dark:border-slate-850">
                 {cat.projects.map((p, pIdx) => (
                   <li key={pIdx} className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 font-mono">
-                    <span className="h-1 w-1 bg-lightAccent dark:bg-darkAccent rounded-full" />
+                    <span className="h-1 w-1 bg-lightAccent dark:bg-darkAccent rounded-full animate-pulse" />
                     <span>{p}</span>
                   </li>
                 ))}
