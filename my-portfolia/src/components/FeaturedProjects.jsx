@@ -70,10 +70,10 @@ const FeaturedProjects = () => {
                 Featured Case Study &bull; Systems Architecture
               </div>
               <h3 className="font-heading text-[21px] md:text-[23px] font-bold text-textPrimary tracking-tight leading-tight">
-                Distributed E-Commerce Orchestration Engine
+                Femvelle E-Commerce Platform
               </h3>
               <p className="text-[14px] md:text-[15px] font-body text-textSecondary leading-relaxed">
-                An event-driven backend engine designed to resolve checkout concurrency conflicts and guarantee data consistency.
+                A full-stack modest fashion commerce platform supporting the complete customer journey from product discovery to secure checkout.
               </p>
             </div>
 
@@ -85,7 +85,7 @@ const FeaturedProjects = () => {
                   Problem
                 </span>
                 <p className="text-textSecondary leading-relaxed">
-                  Database row lockups and concurrency conflicts during high checkout volumes.
+                  Handling duplicate orders, database lockups under checkout pressure, and verifying payment webhook transitions.
                 </p>
               </div>
               <div className="p-3 bg-bgPrimary/30 border border-borderPrimary/60 rounded-xl space-y-1">
@@ -94,7 +94,7 @@ const FeaturedProjects = () => {
                   Solution
                 </span>
                 <p className="text-textSecondary leading-relaxed">
-                  InnoDB pessimistic row-locking for checkouts and a Redis read-through catalog cache.
+                  Stripe payment webhook verification, Redis task routing, transaction safe DB saves, and custom token rotation rules.
                 </p>
               </div>
             </div>
@@ -104,7 +104,7 @@ const FeaturedProjects = () => {
               <div className="text-[8.5px] font-bold text-textMuted uppercase tracking-wider mr-1">Blueprint:</div>
               <div className="flex items-center gap-1.5 px-2 py-1 bg-cardBg border border-borderPrimary rounded-lg">
                 <Globe size={12} className="text-accent" />
-                <span className="font-semibold text-textPrimary text-[9.5px]">Client Checkout</span>
+                <span className="font-semibold text-textPrimary text-[9.5px]">React + TS Storefront</span>
                 <span className="text-[8px] font-bold px-1 py-0.5 bg-accent/5 border border-accent/10 rounded text-accent">POST</span>
               </div>
               <span className="text-textMuted">&rarr;</span>
@@ -116,7 +116,7 @@ const FeaturedProjects = () => {
               <span className="text-textMuted">&rarr;</span>
               <div className="flex items-center gap-1.5 px-2 py-1 bg-cardBg border border-borderPrimary rounded-lg">
                 <Lock size={12} className="text-rose-500" />
-                <span className="font-semibold text-textPrimary text-[9.5px]">MySQL InnoDB</span>
+                <span className="font-semibold text-textPrimary text-[9.5px]">Django REST + MySQL</span>
                 <span className="text-[8px] font-bold px-1 py-0.5 bg-rose-500/5 border border-rose-500/10 rounded text-rose-500">LOCK</span>
               </div>
             </div>
@@ -128,7 +128,7 @@ const FeaturedProjects = () => {
               <div>
                 <div className="text-[10px] font-mono font-bold text-textMuted uppercase tracking-wider mb-1">Technologies</div>
                 <div className="flex flex-wrap gap-1">
-                  {["Node.js", "Express", "Redis", "MySQL", "JWT"].map((t, i) => (
+                  {["React.js", "TypeScript", "Django REST", "MySQL", "Redis", "Docker", "Stripe"].map((t, i) => (
                     <span key={i} className="text-[12px] font-mono text-textPrimary bg-bgPrimary px-2 py-0.5 rounded-lg border border-borderPrimary select-none">
                       {t}
                     </span>
@@ -141,7 +141,7 @@ const FeaturedProjects = () => {
                 <Link to="/portfolio" className="inline-flex items-center gap-1 text-accent hover:text-accentHover font-semibold transition-colors duration-200 group/btn">
                   Explore Project <span className="group-hover/btn:translate-x-0.5 transition-transform">&rarr;</span>
                 </Link>
-                <a href="https://github.com/Khaalid245?tab=repositories" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-textSecondary hover:text-textPrimary transition-colors duration-200">
+                <a href="https://github.com/Khaalid245/FEMVELLA" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-textSecondary hover:text-textPrimary transition-colors duration-200">
                   GitHub &rarr;
                 </a>
               </div>

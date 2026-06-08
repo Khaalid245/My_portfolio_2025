@@ -42,13 +42,22 @@ export const PROJECTS = [
     link: "https://github.com/Khaalid245?tab=repositories"
   },
   {
-    title: "E-Commerce Platform",
+    title: "Femvelle E-Commerce Platform",
     image: project2,
-    problem: "Creating a secure, containerized store with smooth checkout flows, user authentication, and product catalog actions.",
-    solution: "Engineered a reliable online shopping catalog and order pipeline using React.js and Django REST Framework, built with Docker for consistent multi-stage deployments.",
-    stack: ["React.js", "Tailwind CSS", "Django REST Framework", "MySQL", "Docker"],
-    architecture: "React.js / Django REST Framework API / MySQL / Docker Engine",
-    link: "https://github.com/Khaalid245?tab=repositories"
+    problem: "Developing a reliable transactional storefront and checkout system that handles payment verifications, high database write contentions, and concurrent orders safely.",
+    solution: "Engineered a full-stack React and Django REST platform integrated with Stripe checkout webhooks, Redis performance caching, and duplicate order prevention workflows.",
+    stack: ["React.js", "TypeScript", "Django REST Framework", "MySQL", "Redis", "Docker", "Stripe"],
+    architecture: "React.js / TypeScript / Django REST Framework / MySQL / Redis / Docker / Stripe",
+    link: "https://github.com/Khaalid245/FEMVELLA"
+  },
+  {
+    title: "Course Management Platform — Backend Service",
+    image: null,
+    problem: "Academic operations struggle with course allocation tracking, activity monitoring, and automated notifications under manual administration workflows.",
+    solution: "Built a modular Node.js/Express backend service using Sequelize ORM for MySQL modeling, simple-jwt access guards, and Redis background queues for async notifications.",
+    stack: ["Node.js", "Express", "MySQL", "Sequelize", "Redis", "JWT", "Swagger"],
+    architecture: "Node.js / Express / MySQL / Sequelize / Redis / JWT / Swagger",
+    link: "https://github.com/Khaalid245/Course_managment_backend"
   }
 ];
 

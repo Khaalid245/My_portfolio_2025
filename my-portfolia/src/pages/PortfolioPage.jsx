@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   FaFolderOpen, FaServer, FaDatabase, FaDocker, FaBrain, FaGlobe, 
@@ -7,7 +7,7 @@ import {
   FaRocket, FaProjectDiagram, FaChevronRight 
 } from 'react-icons/fa';
 import { 
-  ApiArchitecture, QueueSystem, AiWorkflow 
+  ApiArchitecture, QueueSystem, AiWorkflow, CoursePlatformFlow 
 } from '../components/ArchitectureDiagram';
 
 // Capstone actual screenshot imports
@@ -38,6 +38,7 @@ const PortfolioPage = () => {
   const [autoplay1, setAutoplay1] = useState(false);
   const [autoplay2, setAutoplay2] = useState(false);
   const [zoomScale, setZoomScale] = useState(1);
+  const [activeCaseStudy, setActiveCaseStudy] = useState(null); // null, 1 (School), 2 (E-Commerce)
 
   const screenshotViews = [
     {
@@ -223,6 +224,53 @@ const PortfolioPage = () => {
   const lightboxViews = lightboxProject === 1 ? screenshotViews : (lightboxProject === 2 ? screenshotViews2 : []);
   const lightboxActiveTab = lightboxProject === 1 ? activeTab1 : (lightboxProject === 2 ? activeTab2 : 0);
   const setLightboxActiveTab = lightboxProject === 1 ? setActiveTab1 : (lightboxProject === 2 ? setActiveTab2 : () => {});
+
+  const caseStudies = {
+    1: {
+      title: "School Early Warning Support System",
+      subtitle: "Capstone Project &bull; Educational Risk Analytics",
+      description: "Designed and developed a full-stack platform to help schools monitor attendance, detect academic risk indicators early, and streamline intervention workflows between teachers, form masters, and administrators.",
+      techStack: ["React.js", "Tailwind CSS", "Django REST Framework", "MySQL", "Redis", "Docker", "JWT"],
+      focuses: [
+        "Role-based access control",
+        "Transaction-safe backend workflows",
+        "Async notification processing",
+        "Secure JWT authentication",
+        "Scalable REST API architecture"
+      ],
+      outcome: "Successfully deployed as a capstone platform to automate manual administrative attendance tracking, calculating real-time risk scores that flag supervisor dashboards for early student drop-out prevention."
+    },
+    2: {
+      title: "Femvelle E-Commerce Platform",
+      subtitle: "Femvelle &bull; Full-Stack Modest Fashion Commerce Platform",
+      description: "Built a full-stack e-commerce platform for a modest fashion brand, supporting the complete customer journey from product discovery to secure checkout, order management, and post-purchase workflows.",
+      techStack: ["React.js", "TypeScript", "Django REST Framework", "MySQL", "Redis", "Docker", "Stripe"],
+      focuses: [
+        "secure JWT authentication and token rotation",
+        "Stripe payment integration with webhook verification",
+        "Redis caching and async task processing",
+        "duplicate order prevention and transaction safety",
+        "scalable REST API architecture",
+        "performance optimization and query efficiency"
+      ],
+      outcome: "The project emphasized real-world commerce engineering challenges including concurrency handling, payment reliability, API security, and production-ready deployment workflows."
+    },
+    3: {
+      title: "Course Management Platform — Backend Service",
+      subtitle: "Summative Backend Engineering &bull; Course Platform Backend",
+      description: "A backend service designed to support academic operations including course allocation, facilitator activity tracking, and structured reporting workflows.",
+      techStack: ["Node.js", "Express", "MySQL", "Sequelize", "Redis", "JWT", "Swagger"],
+      focuses: [
+        "role-based JWT authentication",
+        "Redis queue-based notification workflows",
+        "modular Express architecture",
+        "Swagger API documentation",
+        "relational database modeling with Sequelize",
+        "async background job processing"
+      ],
+      outcome: "Developed as an ALU summative backend engineering project focused on workflow automation, maintainable API design, and operational tracking for academic environments."
+    }
+  };
 
   return (
     <div className="space-y-16 py-4">
@@ -516,12 +564,12 @@ const PortfolioPage = () => {
               >
                 GitHub Code
               </a>
-              <a 
-                href="#/case-study" 
-                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard text-xs text-lightText dark:text-darkText px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              <button 
+                onClick={() => setActiveCaseStudy(1)}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard text-xs text-lightText dark:text-darkText px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition font-mono font-bold"
               >
                 Case Study
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -534,7 +582,7 @@ const PortfolioPage = () => {
             Featured E-Commerce Project
           </span>
           <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-lightText dark:text-darkText font-mono">
-            High-Scale E-Commerce Platform
+            Femvelle E-Commerce Platform
           </h2>
         </div>
 
@@ -738,7 +786,7 @@ const PortfolioPage = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-emerald-500 dark:text-emerald-400 font-bold">✔</span>
-                  <span>DRF REST APIs & PostgreSQL database</span>
+                  <span>DRF REST APIs & MySQL database</span>
                 </li>
               </ul>
             </div>
@@ -749,7 +797,7 @@ const PortfolioPage = () => {
                 Technology Stack
               </h4>
               <div className="flex flex-wrap gap-1.5 font-mono">
-                {['React', 'Tailwind CSS', 'Django REST', 'PostgreSQL', 'Redis', 'Docker', 'Stripe'].map((tech, techIdx) => (
+                {['React', 'Tailwind CSS', 'Django REST', 'MySQL', 'Redis', 'Docker', 'Stripe'].map((tech, techIdx) => (
                   <span
                     key={techIdx}
                     className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs text-slate-650 dark:text-slate-400"
@@ -769,13 +817,19 @@ const PortfolioPage = () => {
                 Live Demo &rarr;
               </a>
               <a 
-                href="https://github.com/Khaalid245" 
+                href="https://github.com/Khaalid245/FEMVELLA" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard text-xs text-lightText dark:text-darkText px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
               >
                 GitHub Code
               </a>
+              <button 
+                onClick={() => setActiveCaseStudy(2)}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard text-xs text-lightText dark:text-darkText px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition font-mono font-bold"
+              >
+                Case Study
+              </button>
             </div>
           </div>
         </div>
@@ -1072,6 +1126,117 @@ const PortfolioPage = () => {
           </div>
         </div>
       )}
+
+      {/* Case Study Modal */}
+      <AnimatePresence>
+        {activeCaseStudy !== null && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveCaseStudy(null)}
+              className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm"
+            />
+
+            {/* Modal Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ duration: 0.25 }}
+              className="relative w-full max-w-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-900 rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[85vh] p-6 sm:p-8 text-lightText dark:text-darkText font-sans"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="flex justify-between items-start border-b border-slate-100 dark:border-slate-900 pb-4 mb-6">
+                <div className="space-y-1">
+                  <span 
+                    className="font-mono text-[10px] uppercase tracking-wider text-lightAccent dark:text-darkAccent font-bold"
+                    dangerouslySetInnerHTML={{ __html: caseStudies[activeCaseStudy].subtitle }}
+                  />
+                  <h3 className="font-heading text-xl md:text-2xl font-bold tracking-tight text-lightText dark:text-darkText font-mono">
+                    {caseStudies[activeCaseStudy].title}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setActiveCaseStudy(null)}
+                  className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors font-bold font-mono"
+                  title="Close Case Study"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Scrollable Content */}
+              <div className="flex-1 overflow-y-auto space-y-6 pr-1.5 scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-900 scrollbar-track-transparent">
+                {/* Description */}
+                <div className="space-y-2">
+                  <h4 className="text-xs font-mono font-bold text-slate-405 dark:text-slate-500 uppercase tracking-wider">
+                    Overview
+                  </h4>
+                  <p className="text-sm text-slate-650 dark:text-slate-405 leading-relaxed">
+                    {caseStudies[activeCaseStudy].description}
+                  </p>
+                </div>
+
+                {/* Technology Stack */}
+                <div className="space-y-2.5">
+                  <h4 className="text-xs font-mono font-bold text-slate-405 dark:text-slate-500 uppercase tracking-wider">
+                    Engineering Stack
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5 font-mono">
+                    {caseStudies[activeCaseStudy].techStack.map((tech, techIdx) => (
+                      <span
+                        key={techIdx}
+                        className="rounded border border-slate-200 dark:border-slate-850 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs text-slate-650 dark:text-slate-405"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Key Focuses */}
+                <div className="space-y-2.5">
+                  <h4 className="text-xs font-mono font-bold text-slate-405 dark:text-slate-500 uppercase tracking-wider">
+                    Key Engineering Focuses
+                  </h4>
+                  <ul className="space-y-2 text-xs text-slate-650 dark:text-slate-405 font-mono">
+                    {caseStudies[activeCaseStudy].focuses.map((focus, idx) => (
+                      <li key={idx} className="flex items-start gap-2.5">
+                        <span className="text-emerald-500 dark:text-emerald-400 font-bold flex-shrink-0">✔</span>
+                        <span>{focus}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Outcome */}
+                <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-900">
+                  <h4 className="text-xs font-mono font-bold text-slate-405 dark:text-slate-500 uppercase tracking-wider">
+                    System Outcome
+                  </h4>
+                  <p className="text-xs text-slate-650 dark:text-slate-405 leading-relaxed">
+                    {caseStudies[activeCaseStudy].outcome}
+                  </p>
+                </div>
+              </div>
+
+              {/* Footer Actions */}
+              <div className="flex justify-end pt-6 border-t border-slate-100 dark:border-slate-900 mt-6 font-mono">
+                <button
+                  onClick={() => setActiveCaseStudy(null)}
+                  className="rounded-lg bg-lightAccent dark:bg-darkAccent text-white text-xs font-bold px-4 py-2.5 hover:opacity-90 transition shadow-sm"
+                >
+                  Got it &rarr;
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
