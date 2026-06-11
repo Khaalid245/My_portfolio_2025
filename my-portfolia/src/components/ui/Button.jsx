@@ -17,7 +17,7 @@ const Button = ({
   const baseStyles = "inline-flex items-center justify-center font-mono font-medium rounded-xl transition-all duration-300 select-none text-caption py-3 px-6 gap-2 border shadow-sm cursor-pointer";
   
   const variants = {
-    primary: "bg-accent border-accent text-white hover:bg-accentHover hover:border-accentHover shadow-indigo-500/10",
+    primary: "bg-accent border-accent text-white dark:text-slate-950 hover:bg-accentHover hover:border-accentHover shadow-indigo-500/10",
     secondary: "bg-bgSecondary border-borderPrimary text-textPrimary hover:bg-bgPrimary hover:border-textMuted",
     outline: "bg-transparent border-borderPrimary text-textPrimary hover:bg-bgSecondary hover:border-textMuted"
   };

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import aboutImg from '../assets/aboutme.png';
+import aboutImg from '../assets/aboutme.webp';
 import { FaServer, FaDocker, FaBrain, FaCompass } from 'react-icons/fa';
 
 const AboutMePage = () => {
@@ -58,6 +58,8 @@ const AboutMePage = () => {
           <img 
             src={aboutImg} 
             alt="Khalid Abdillahi" 
+            fetchPriority="high"
+            loading="eager"
             className="w-64 h-88 lg:w-80 lg:h-[440px] rounded-2xl object-cover border border-slate-200 dark:border-slate-800 transition duration-500 shadow-xl"
           />
         </motion.div>

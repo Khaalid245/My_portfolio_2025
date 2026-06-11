@@ -42,6 +42,8 @@ const CircularProfile = ({ image, className = '' }) => {
           <img
             src={image}
             alt="Khalid Abdillahi Portrait"
+            fetchPriority="high"
+            loading="eager"
             className="w-[400px] h-[440px] rounded-[24px] object-cover object-center grayscale hover:grayscale-0 transition-all duration-350"
           />
         </motion.div>

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useRef } from 'react';
-import logo from '../assets/khalid3.jpg';
+import logo from '../assets/khalid3.webp';
 import { Sun, Moon, Menu, X, ChevronDown, Search } from 'lucide-react';
 import { FaLinkedin as Linkedin, FaGithub as Github } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';

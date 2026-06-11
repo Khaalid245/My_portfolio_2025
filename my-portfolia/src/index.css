@@ -15,8 +15,8 @@ html {
   --color-text-primary: #0F172A;
   --color-text-secondary: #475569;
   --color-text-muted: #64748B;
-  --color-accent: #4F46E5;
-  --color-accent-hover: #4338CA;
+  --color-accent: #4338CA;        /* High contrast Indigo-700 (Passes AA/AAA contrast on light backgrounds) */
+  --color-accent-hover: #312E81;  /* Indigo-900 */
 }
 
 .dark {
@@ -27,8 +27,8 @@ html {
   --color-text-primary: #F3F4F6;  /* High contrast light text */
   --color-text-secondary: #D1D5DB; /* Muted reading text */
   --color-text-muted: #9CA3AF;    /* Details and captions text */
-  --color-accent: #6366F1;      /* Indigo Accent */
-  --color-accent-hover: #818CF8;
+  --color-accent: #818CF8;      /* High contrast Indigo-400 (Passes AA/AAA contrast on dark backgrounds) */
+  --color-accent-hover: #6366F1;  /* Indigo-500 */
 }
 
 body {

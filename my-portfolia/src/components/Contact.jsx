@@ -41,7 +41,7 @@ const Contact = () => {
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <a 
                 href={`mailto:${CONTACT_CTA.email}`}
-                className="inline-flex items-center gap-2 rounded-xl bg-accent hover:bg-accentHover px-6 py-3 font-body text-[14px] text-white font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
+                className="inline-flex items-center gap-2 rounded-xl bg-accent hover:bg-accentHover px-6 py-3 font-body text-[14px] text-white dark:text-slate-950 font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
               >
                 <Mail size={16} />
                 <span>Send Email</span>

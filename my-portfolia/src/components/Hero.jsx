@@ -1,4 +1,4 @@
-import profilePic from '../assets/khalidProfile.jpg';
+import profilePic from '../assets/khalidProfile.webp';
 import { motion } from 'framer-motion';
 import Button from './ui/Button';
 import CircularProfile from './ui/CircularProfile';
