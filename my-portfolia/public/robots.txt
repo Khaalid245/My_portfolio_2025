@@ -4,3 +4,5 @@ Allow: /
 
 # Reference the sitemap location
 Sitemap: https://my-portfolio-2025-three.vercel.app/sitemap.xml
+
+# Deploy Trigger
