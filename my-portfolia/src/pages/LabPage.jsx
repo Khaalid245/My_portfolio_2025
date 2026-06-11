@@ -1,221 +1,220 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  FaFolderOpen, FaRocket, FaLink, FaSync, FaDocker, 
-  FaBrain, FaFileAlt, FaBolt, FaLightbulb, FaSearch, 
-  FaProjectDiagram, FaCode, FaBug, FaBookOpen, FaTools, FaFileDownload 
-} from 'react-icons/fa';
+import { ChevronRight } from 'lucide-react';
+
+const featured = [
+  {
+    title: 'Course Management platform (Backend)',
+    tech: ['Express', 'Node.js', 'Sequelize ORM', 'Redis', 'JWT', 'MySQL'],
+    desc: 'A backend service designed to learn role-based allocations, audit logging, and Redis async queue workers under local Docker development.',
+    linkText: 'View Repository →',
+    url: 'https://github.com/Khaalid245/Course_managment_backend'
+  },
+  {
+    title: 'Femvelle modest commerce platform (Backend)',
+    tech: ['Django REST', 'Redis cache', 'InnoDB Row-Locks', 'Stripe checkout', 'MySQL'],
+    desc: 'An e-commerce backend built to explore MySQL transaction locks for double-sell protection and Redis cache-aside catalog lookups.',
+    linkText: 'View Repository →',
+    url: 'https://github.com/Khaalid245/FEMVELLA'
+  }
+];
+
+const codeFiles = {
+  docker: {
+    name: 'docker-compose.yml',
+    language: 'yaml',
+    description: 'A local multi-container development setup orchestrating an Express service, MySQL, Redis, and an Nginx reverse proxy wrapper to standardize environment variables.',
+    code: `version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=db
+      - REDIS_HOST=cache
+    depends_on:
+      - db
+      - cache
+
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=course_allocator
+      - MYSQL_ROOT_PASSWORD=secret
+
+  cache:
+    image: redis:7.0-alpine
+    volumes:
+      - redis_data:/data
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./certbot/conf:/etc/letsencrypt
+    depends_on:
+      - api
+
+volumes:
+  mysql_data:
+  redis_data:`
+  },
+  nginx: {
+    name: 'nginx.conf',
+    language: 'nginx',
+    description: 'Nginx server block configuration for routing local traffic from port 80 to container endpoints, handling CORS headers, and testing location proxy forwards.',
+    code: `server {
+    listen 80;
+    server_name localhost;
+
+    # CORS configurations for local API testing
+    add_header 'Access-Control-Allow-Origin' 'http://localhost:5173' always;
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
+    add_header 'Access-Control-Allow-Headers' 'Authorization, Content-Type, X-Requested-With' always;
+
+    location / {
+        proxy_pass http://api:5000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}`
+  },
+  sequelize: {
+    name: 'sequelize-lock.js',
+    language: 'javascript',
+    description: 'An API controller implementation testing database row-level locking (SELECT FOR UPDATE) via Sequelize to prevent simultaneous stock double-booking.',
+    code: `// Preventing stock oversells using SELECT FOR UPDATE
+const purchaseItem = async (db, orderId, productId, quantity) => {
+  const transaction = await db.sequelize.transaction();
+  try {
+    // Lock product row to prevent concurrency race conditions
+    const product = await db.Product.findOne({
+      where: { id: productId },
+      lock: transaction.LOCK.UPDATE,
+      transaction
+    });
+
+    if (product.stock < quantity) {
+      throw new Error(\`Insufficient stock for product: \${product.name}\`);
+    }
+
+    // Decrement stock and log order
+    await product.decrement('stock', { by: quantity, transaction });
+    const order = await db.Order.create({
+      id: orderId,
+      productId,
+      quantity,
+      status: 'reserved'
+    }, { transaction });
+
+    await transaction.commit();
+    return order;
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
+};`
+  },
+  django: {
+    name: 'django-auth-cookie.py',
+    language: 'python',
+    description: 'Custom authentication backend code verifying JWT session tokens stored inside secure, HTTP-only cookies in a local testing environment.',
+    code: `# Custom token verification middleware fallback to http-only cookies
+from django.conf import settings
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
+class CustomCookieJWTAuthentication(JWTAuthentication):
+    def authenticate(self, request):
+        # Search for standard Authorization headers first
+        header = self.get_header(request)
+        if header is not None:
+            raw_token = self.get_raw_token(header)
+        else:
+            # Fallback: check secure HTTP-only cookies
+            raw_token = request.COOKIES.get(settings.SIMPLE_JWT['AUTH_COOKIE'])
+
+        if raw_token is None:
+            return None
+
+        validated_token = self.get_validated_token(raw_token)
+        return self.get_user(validated_token), validated_token`
+  }
+};
 
 const LabPage = () => {
-  const [downloadState, setDownloadState] = useState(null); // name of download being simulated
+  const location = useLocation();
+  const [selectedFile, setSelectedFile] = useState('docker');
+  const [copiedFile, setCopiedFile] = useState(false);
 
-  const stats = [
-    { label: '20+ Resources', icon: <FaFolderOpen /> },
-    { label: '10+ Starter Kits', icon: <FaRocket /> },
-    { label: '5+ API Collections', icon: <FaLink /> },
-    { label: 'Always Updating', icon: <FaSync className="animate-spin-slow" /> }
-  ];
-
-  const featured = [
-    {
-      title: 'Full Stack Starter',
-      tech: ['Next.js', 'TypeScript', 'Tailwind', 'Authentication', 'Docker'],
-      desc: 'Production-ready starter template for modern web applications.',
-      linkText: 'Download →',
-      type: 'download'
-    },
-    {
-      title: 'Backend API Boilerplate',
-      tech: ['Express', 'JWT', 'Redis', 'MySQL', 'Swagger'],
-      desc: 'REST API architecture with authentication, logging, and validation.',
-      linkText: 'View Repository →',
-      type: 'link',
-      url: 'https://github.com/Khaalid245?tab=repositories'
-    },
-    {
-      title: 'Docker Development Environment',
-      tech: ['Docker', 'Docker Compose', 'Nginx', 'PostgreSQL'],
-      desc: 'Ready-to-use local development environment.',
-      linkText: 'View Repository →',
-      type: 'link',
-      url: 'https://github.com/Khaalid245?tab=repositories'
+  useEffect(() => {
+    if (location.state?.fileId) {
+      if (codeFiles[location.state.fileId]) {
+        setSelectedFile(location.state.fileId);
+      }
     }
-  ];
+  }, [location.state]);
 
-  const categories = [
-    {
-      title: 'Templates',
-      icon: <FaFileAlt className="text-lightAccent dark:text-darkAccent" />,
-      items: ['Portfolio Starter', 'Admin Dashboard', 'Authentication', 'Landing Page']
-    },
-    {
-      title: 'Boilerplates',
-      icon: <FaBolt className="text-lightAccent dark:text-darkAccent" />,
-      items: ['Node.js API', 'Django REST', 'Express', 'Next.js']
-    },
-    {
-      title: 'API Collections',
-      icon: <FaLink className="text-lightAccent dark:text-darkAccent" />,
-      items: ['Postman', 'Swagger', 'OpenAPI', 'Testing Collections']
-    },
-    {
-      title: 'DevOps',
-      icon: <FaDocker className="text-lightAccent dark:text-darkAccent" />,
-      items: ['Docker', 'CI/CD', 'Deployment', 'Linux Notes']
-    },
-    {
-      title: 'AI Resources',
-      icon: <FaBrain className="text-lightAccent dark:text-darkAccent" />,
-      items: ['Prompt Library', 'RAG Starter', 'LLM Examples', 'Python Notebooks']
-    }
-  ];
-
-  const productivity = [
-    {
-      category: 'Development',
-      items: ['VS Code', 'Cursor', 'GitHub', 'Docker', 'Postman']
-    },
-    {
-      category: 'Design',
-      items: ['Figma', 'Excalidraw', 'Lucide Icons']
-    },
-    {
-      category: 'AI Tools',
-      items: ['ChatGPT', 'Claude', 'Gemini']
-    },
-    {
-      category: 'Organization',
-      items: ['Notion', 'Obsidian', 'GitHub Projects']
-    }
-  ];
-
-  const workflow = [
-    { step: 'Idea', icon: <FaLightbulb />, desc: 'Conceptualizing system requirements' },
-    { step: 'Research', icon: <FaSearch />, desc: 'Investigating trade-offs & query constraints' },
-    { step: 'Architecture', icon: <FaProjectDiagram />, desc: 'Structuring databases, API gateways & caches' },
-    { step: 'Development', icon: <FaCode />, desc: 'Writing clean modular code and units tests' },
-    { step: 'Testing', icon: <FaBug />, desc: 'Profiling query performance & route concurrency' },
-    { step: 'Deployment', icon: <FaRocket />, desc: 'Orchestrating containers & configuring CDN proxy' },
-    { step: 'Documentation', icon: <FaBookOpen />, desc: 'Authoring clean readme maps and Swagger guides' },
-    { step: 'Maintenance', icon: <FaTools />, desc: 'Monitoring logs, database queries & indexes' }
-  ];
-
-  const learningDashboard = [
-    { topic: 'Docker', status: 'Active Use', color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20' },
-    { topic: 'Kubernetes', status: 'Exploring', color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20' },
-    { topic: 'Full-Stack AI Systems', status: 'Experimenting', color: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20' },
-    { topic: 'System Design', status: 'Building', color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20' }
-  ];
-
-  const books = [
-    { title: 'Designing Data-Intensive Applications', author: 'Martin Kleppmann', tag: 'System Design' },
-    { title: 'Clean Architecture', author: 'Robert C. Martin', tag: 'Structure' },
-    { title: 'The Pragmatic Programmer', author: 'Andrew Hunt & David Thomas', tag: 'Core Craft' },
-    { title: 'System Design Interview', author: 'Alex Xu', tag: 'Scaling' }
-  ];
-
-  const downloads = [
-    { name: 'Resume', file: 'PDF Document' },
-    { name: 'System Design Notes', file: 'Markdown Guide' },
-    { name: 'API Cheat Sheet', file: 'Cheat Sheet PDF' },
-    { name: 'Docker Cheat Sheet', file: 'DevOps PDF' },
-    { name: 'Backend Roadmap', file: 'Systems PDF' }
-  ];
-
-  const repos = [
-    { name: 'Course Management Platform', updated: '2 days ago' },
-    { name: 'Healthcare System Research', updated: '5 days ago' },
-    { name: 'Blog Platform', updated: '1 week ago' },
-    { name: 'AI Playground', updated: '2 weeks ago' },
-    { name: 'Docker Templates', updated: '3 weeks ago' }
-  ];
-
-  const triggerDownloadSimulate = (name) => {
-    setDownloadState(name);
-    setTimeout(() => {
-      setDownloadState(null);
-      // Simulate file download
-      const element = document.createElement("a");
-      const file = new Blob([`Mock download data for ${name}`], {type: 'text/plain'});
-      element.href = URL.createObjectURL(file);
-      element.download = `${name.toLowerCase().replace(/\s+/g, '-')}-starter.txt`;
-      document.body.appendChild(element);
-      element.click();
-      document.body.removeChild(element);
-    }, 1200);
+  const handleCopyCode = (text) => {
+    navigator.clipboard.writeText(text);
+    setCopiedFile(true);
+    setTimeout(() => setCopiedFile(false), 2000);
   };
 
   return (
-    <div className="space-y-24 py-10">
+    <div className="max-w-4xl mx-auto space-y-16 py-6">
       
       {/* 1. Hero Section */}
-      <section className="text-center space-y-6 pb-12 border-b border-slate-200 dark:border-slate-800">
+      <section className="text-center space-y-4 pb-8 border-b border-slate-200 dark:border-slate-800">
+        <span className="font-mono text-xs uppercase tracking-widest text-lightAccent dark:text-darkAccent font-bold block mb-1">
+          Systems Lab
+        </span>
         <motion.h1 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="text-4xl lg:text-5xl font-bold tracking-tight text-lightText dark:text-darkText font-mono"
         >
-          Engineering Lab
+          Systems Lab
         </motion.h1>
         
         <motion.p 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="max-w-2xl mx-auto text-lg text-slate-500 dark:text-slate-400"
+          className="max-w-xl mx-auto text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-sans"
         >
-          Tools, templates, starter kits, notes, and reusable resources I use while building software. Built to save time, improve consistency, and share practical knowledge.
+          A backend-focused sandbox where I document local infrastructure experiments, Nginx server configs, and custom API code structures.
         </motion.p>
-
-        {/* Statistics Bar */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 max-w-2xl mx-auto"
-        >
-          {stats.map((stat, index) => (
-            <div 
-              key={index}
-              className="rounded-xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-3.5 flex flex-col items-center gap-2"
-            >
-              <span className="text-lg text-lightAccent dark:text-darkAccent">{stat.icon}</span>
-              <span className="text-xs font-mono font-bold text-lightText dark:text-darkText">{stat.label}</span>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Action Buttons */}
-        <div className="flex gap-4 justify-center pt-4">
-          <a
-            href="#featured-resources"
-            className="rounded-xl bg-lightAccent dark:bg-darkAccent hover:opacity-90 px-6 py-2.5 font-mono text-sm text-white font-bold transition duration-300 shadow-md"
-          >
-            Browse Resources
-          </a>
-          <a
-            href="https://github.com/Khaalid245?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-xl border border-slate-200 dark:border-slate-800 bg-lightBg dark:bg-slate-900/60 hover:bg-slate-50 dark:hover:bg-slate-900 px-6 py-2.5 font-mono text-sm text-lightText dark:text-darkText transition duration-300"
-          >
-            View GitHub
-          </a>
-        </div>
       </section>
 
-      {/* 2. Featured Resources */}
-      <section id="featured-resources" className="space-y-8">
-        <h2 className="text-2xl font-bold tracking-tight text-lightText dark:text-darkText font-mono border-b border-slate-200/60 dark:border-slate-800/40 pb-2">
-          Featured Toolkit
+      {/* 2. Featured Toolkit */}
+      <section className="space-y-6">
+        <h2 className="text-xl font-bold tracking-tight text-lightText dark:text-darkText font-mono border-b border-slate-200/60 dark:border-slate-800/40 pb-2">
+          Featured Sandbox Projects
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {featured.map((item, index) => (
             <motion.div
               key={index}
-              whileHover={{ y: -4, scale: 1.01 }}
+              whileHover={{ y: -4 }}
               transition={{ type: 'spring', stiffness: 300 }}
               className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-6 flex flex-col justify-between"
             >
@@ -224,265 +223,95 @@ const LabPage = () => {
                   {item.tech.map((t, tIdx) => (
                     <span 
                       key={tIdx} 
-                      className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 px-2 py-0.5 text-[10px] font-mono text-slate-500 dark:text-slate-400"
+                      className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 px-2 py-0.5 text-[9px] font-mono text-slate-500 dark:text-slate-400"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
-                <h3 className="font-mono text-lg font-bold text-lightText dark:text-darkText">
+                <h3 className="font-mono text-base font-bold text-lightText dark:text-darkText">
                   {item.title}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-sans">
                   {item.desc}
                 </p>
               </div>
 
               <div className="pt-6 border-t border-slate-100 dark:border-slate-850 mt-6">
-                {item.type === 'download' ? (
-                  <button
-                    onClick={() => triggerDownloadSimulate(item.title)}
-                    disabled={downloadState === item.title}
-                    className="inline-flex items-center gap-1.5 font-mono text-xs text-lightAccent dark:text-darkAccent hover:underline disabled:opacity-50"
-                  >
-                    {downloadState === item.title ? 'Downloading...' : item.linkText}
-                  </button>
-                ) : (
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 font-mono text-xs text-lightAccent dark:text-darkAccent hover:underline"
-                  >
-                    {item.linkText}
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. Categories */}
-      <section className="space-y-8">
-        <h2 className="text-2xl font-bold tracking-tight text-lightText dark:text-darkText font-mono border-b border-slate-200/60 dark:border-slate-800/40 pb-2">
-          Toolkit Categories
-        </h2>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
-          {categories.map((cat, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -4 }}
-              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-5 space-y-4"
-            >
-              <div className="flex items-center gap-2.5">
-                <span className="p-2 bg-lightBg dark:bg-slate-950 rounded-lg border border-slate-100 dark:border-slate-850">
-                  {cat.icon}
-                </span>
-                <h3 className="font-mono text-sm font-bold text-lightText dark:text-darkText leading-tight">
-                  {cat.title}
-                </h3>
-              </div>
-              <ul className="space-y-1.5 pl-2 border-l border-slate-100 dark:border-slate-850">
-                {cat.items.map((i, idx) => (
-                  <li key={idx} className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 font-mono">
-                    <span className="h-1 w-1 bg-lightAccent dark:bg-darkAccent rounded-full" />
-                    <span>{i}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. Productivity Stack */}
-      <section className="space-y-8">
-        <h2 className="text-2xl font-bold tracking-tight text-lightText dark:text-darkText font-mono border-b border-slate-200/60 dark:border-slate-800/40 pb-2">
-          Productivity Stack
-        </h2>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {productivity.map((stack, index) => (
-            <motion.div
-              key={index}
-              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-6 space-y-4"
-            >
-              <h3 className="font-mono text-sm font-bold text-lightText dark:text-darkText border-b border-slate-100 dark:border-slate-850 pb-2">
-                {stack.category}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {stack.items.map((item, itemIdx) => (
-                  <span
-                    key={itemIdx}
-                    className="rounded border border-slate-200 dark:border-slate-800 bg-lightBg dark:bg-slate-900/60 px-2.5 py-0.5 text-xs font-mono text-slate-600 dark:text-slate-400"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. Engineering Workflow */}
-      <section className="space-y-12">
-        <h2 className="text-2xl font-bold tracking-tight text-lightText dark:text-darkText font-mono border-b border-slate-200/60 dark:border-slate-800/40 pb-2">
-          My Engineering Workflow
-        </h2>
-
-        {/* Workflow steps in custom flex nodes layout */}
-        <div className="grid grid-cols-2 md:grid-cols-8 gap-4">
-          {workflow.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.04 }}
-              className="rounded-xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-4 flex flex-col items-center justify-between text-center relative hover:border-lightAccent dark:hover:border-darkAccent transition-colors duration-300"
-            >
-              <div className="space-y-2.5">
-                <span className="text-xl text-lightAccent dark:text-darkAccent">
-                  {item.icon}
-                </span>
-                <h3 className="font-mono text-xs font-bold text-lightText dark:text-darkText uppercase tracking-wider">
-                  {item.step}
-                </h3>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* 6. Learning Dashboard */}
-      <section className="space-y-8">
-        <h2 className="text-2xl font-bold tracking-tight text-lightText dark:text-darkText font-mono border-b border-slate-200/60 dark:border-slate-800/40 pb-2">
-          Learning Dashboard
-        </h2>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {learningDashboard.map((board, index) => (
-            <motion.div
-              key={index}
-              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-6 flex flex-col justify-between gap-4"
-            >
-              <h3 className="font-mono text-sm font-bold text-lightText dark:text-darkText">
-                {board.topic}
-              </h3>
-              <div className="w-full flex">
-                <span className={`text-xs font-mono font-bold px-3 py-1 rounded-full border ${board.color}`}>
-                  {board.status}
-                </span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* 7. Books & References */}
-      <section className="space-y-8">
-        <h2 className="text-2xl font-bold tracking-tight text-lightText dark:text-darkText font-mono border-b border-slate-200/60 dark:border-slate-800/40 pb-2">
-          Books That Changed My Thinking
-        </h2>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {books.map((book, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -4 }}
-              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-6 flex flex-col justify-between gap-6 hover:shadow-md transition-shadow"
-            >
-              <div className="space-y-3">
-                <span className="text-[10px] font-mono font-bold text-lightAccent dark:text-darkAccent bg-lightAccent/10 dark:bg-darkAccent/10 px-2 py-0.5 rounded uppercase tracking-wider">
-                  {book.tag}
-                </span>
-                <h3 className="font-mono text-sm font-bold text-lightText dark:text-darkText leading-tight">
-                  {book.title}
-                </h3>
-              </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold border-t border-slate-100 dark:border-slate-850 pt-3">
-                {book.author}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* 8. Downloads */}
-      <section className="space-y-8">
-        <h2 className="text-2xl font-bold tracking-tight text-lightText dark:text-darkText font-mono border-b border-slate-200/60 dark:border-slate-800/40 pb-2">
-          Cheat Sheets & roadmaps
-        </h2>
-        
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-          {downloads.map((dl, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -4 }}
-              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-5 flex flex-col justify-between gap-6 hover:shadow-md transition-shadow"
-            >
-              <div className="space-y-2">
-                <h3 className="font-mono text-sm font-bold text-lightText dark:text-darkText leading-tight">
-                  {dl.name}
-                </h3>
-                <p className="text-[10px] font-mono text-slate-400">
-                  {dl.file}
-                </p>
-              </div>
-              <div className="border-t border-slate-100 dark:border-slate-855 pt-3">
-                <button
-                  onClick={() => triggerDownloadSimulate(dl.name)}
-                  className="inline-flex items-center gap-1.5 font-mono text-xs text-lightAccent dark:text-darkAccent hover:underline"
-                >
-                  <FaFileDownload /> Get File
-                </button>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* 9. GitHub Activity */}
-      <section className="space-y-8">
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight text-lightText dark:text-darkText font-mono">
-            Recent Repositories
-          </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Updated code logs from system packages and course platform modules.
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
-          {repos.map((repo, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -4 }}
-              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard dark:bg-darkCard p-5 flex flex-col justify-between hover:shadow-md transition-shadow duration-300"
-            >
-              <div className="space-y-4">
-                <h3 className="font-mono text-xs font-bold text-lightText dark:text-darkText leading-tight border-b border-slate-100 dark:border-slate-850 pb-2">
-                  {repo.name}
-                </h3>
-                <span className="text-[10px] font-mono text-slate-400 block pt-1">
-                  Updated {repo.updated}
-                </span>
-              </div>
-              <div className="border-t border-slate-100 dark:border-slate-855 pt-3 mt-4">
                 <a
-                  href="https://github.com/Khaalid245?tab=repositories"
+                  href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-mono text-xs text-lightAccent dark:text-darkAccent hover:underline"
+                  className="inline-flex items-center gap-1.5 font-mono text-xs text-lightAccent dark:text-darkAccent hover:underline font-bold"
                 >
-                  View Repo &rarr;
+                  {item.linkText}
                 </a>
               </div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* 3. Systems Code Explorer */}
+      <section className="space-y-6">
+        <div className="border-b border-slate-200/60 dark:border-slate-800/40 pb-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <h2 className="text-xl font-bold tracking-tight text-lightText dark:text-darkText font-mono">
+            Systems Code Explorer
+          </h2>
+          <p className="text-sm text-slate-500 dark:text-slate-400 font-sans">
+            Real configurations from local development experiments.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* File Tabs List */}
+          <div className="lg:col-span-4 flex flex-col gap-2 font-mono">
+            {Object.entries(codeFiles).map(([key, file]) => {
+              const isSelected = selectedFile === key;
+              return (
+                <button
+                  key={key}
+                  onClick={() => setSelectedFile(key)}
+                  className={`flex items-center justify-between p-4 rounded-xl border text-left text-xs md:text-sm transition duration-200 cursor-pointer ${
+                    isSelected
+                      ? 'border-lightAccent dark:border-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 text-lightAccent dark:text-darkAccent font-bold'
+                      : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  <span>{file.name}</span>
+                  <ChevronRight size={12} className={`transition-transform duration-200 ${isSelected ? 'translate-x-1' : ''}`} />
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Code Viewer Panel */}
+          <div className="lg:col-span-8 flex flex-col justify-between border border-slate-200 dark:border-slate-800 rounded-2xl bg-lightCard dark:bg-[#090D1A] overflow-hidden">
+            <div>
+              {/* Header */}
+              <div className="flex justify-between items-center bg-slate-950 border-b border-slate-900 px-6 py-3 font-mono text-xs text-slate-400 select-none">
+                <span>{codeFiles[selectedFile].name}</span>
+                <button
+                  onClick={() => handleCopyCode(codeFiles[selectedFile].code)}
+                  className="hover:text-lightAccent dark:hover:text-darkAccent text-slate-400 transition cursor-pointer font-bold uppercase text-[10px]"
+                >
+                  {copiedFile ? 'COPIED!' : 'COPY'}
+                </button>
+              </div>
+
+              {/* Code */}
+              <pre className="p-6 text-[12px] font-mono leading-relaxed overflow-x-auto text-green-400 bg-[#090D1A] max-h-[350px]">
+                <code>{codeFiles[selectedFile].code}</code>
+              </pre>
+            </div>
+
+            {/* Description */}
+            <div className="p-6 bg-slate-50 dark:bg-slate-950/40 border-t border-slate-200 dark:border-slate-800/80">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
+                {codeFiles[selectedFile].description}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

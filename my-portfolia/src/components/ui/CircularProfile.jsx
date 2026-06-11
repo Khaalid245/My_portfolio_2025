@@ -9,7 +9,7 @@ const MetricCard = ({ category, value, icon: Icon, className = '', delay = 0 }) 
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
       whileHover={{ scale: 1.02, y: -2 }}
-      className={`absolute bg-cardBg border border-borderPrimary rounded-xl p-3 shadow-md hover:shadow-lg hover:border-accent/40 transition-all duration-200 flex items-center gap-3 min-w-[165px] max-w-[190px] select-none z-20 ${className}`}
+      className={`absolute bg-cardBg border border-borderPrimary rounded-xl p-3 shadow-md hover:shadow-lg hover:border-accent/40 transition-all duration-200 hidden lg:flex items-center gap-3 min-w-[165px] max-w-[190px] select-none z-20 ${className}`}
     >
       <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-accent text-white flex-shrink-0 shadow-sm shadow-accent/20">
         <Icon size={20} />

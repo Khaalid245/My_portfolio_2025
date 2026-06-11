@@ -10,6 +10,7 @@ const BlogCard = ({
   readTime,
   link = '/blog',
   category,
+  state,
   ...props
 }) => {
   return (
@@ -44,6 +45,7 @@ const BlogCard = ({
       <div className="border-t border-borderPrimary/60 pt-4 flex items-center justify-between">
         <Link
           to={link}
+          state={state}
           className="text-[13px] font-mono text-accent hover:text-accentHover font-semibold transition-colors duration-300 inline-flex items-center gap-1.5"
         >
           <BookOpen size={13} />

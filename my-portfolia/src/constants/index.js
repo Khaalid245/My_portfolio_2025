@@ -1,7 +1,6 @@
 import project1 from "../assets/projects/project-1.jpg";
 import project2 from "../assets/projects/project-2.png";
-import project3 from "../assets/projects/project-3.png";
-import project4 from "../assets/projects/project-4.jpg";
+
 
 export const HERO_CONTENT = {
   title: "Khalid Abdillahi",
@@ -115,25 +114,28 @@ export const EXPERIENCES = [
 
 export const LATEST_WRITING = [
   {
-    title: "Building Redis Notification Systems",
-    description: "An architectural guide on using Redis Pub/Sub and Streams to build reliable real-time system alerts.",
-    link: "#",
+    id: "jwt-auth",
+    title: "How I Built Secure JWT Authentication with Django REST Framework",
+    description: "Securing stateless REST endpoints in Django using HTTP-only cookies, token rotation, and custom middleware protection.",
+    link: "/blog",
     date: "May 2026",
-    readTime: "5 min read",
-    category: "System Design"
+    readTime: "8 min read",
+    category: "Backend"
   },
   {
-    title: "JWT Authentication in Node.js",
-    description: "Securing Express APIs using HTTP-only cookies, token rotation, and strict CORS policies.",
-    link: "#",
+    id: "ecommerce-backend",
+    title: "What I Learned Building an E-Commerce Backend with Redis and Stripe",
+    description: "Managing transaction locking, Redis performance caching, and webhook idempotency under high concurrency checkout workflows.",
+    link: "/blog",
     date: "April 2026",
-    readTime: "7 min read",
-    category: "Security"
+    readTime: "10 min read",
+    category: "Full Stack"
   },
   {
-    title: "My Journey Into DevOps",
-    description: "How transitioning from building frontends to managing deployments and Linux environments changed my engineering mindset.",
-    link: "#",
+    id: "devops-journey",
+    title: "My Journey Learning DevOps and Backend Systems as a Software Engineering Student",
+    description: "Transitioning from local scripts to server configuration, Docker virtualization, Nginx proxies, and automation pipelines.",
+    link: "/blog",
     date: "March 2026",
     readTime: "6 min read",
     category: "DevOps"

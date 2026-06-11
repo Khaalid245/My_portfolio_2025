@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --color-bg: #FAFAFA;
   --color-bg-sec: #FFFFFF;

@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import logo from '../assets/khalid3.jpg';
 import { Sun, Moon, Menu, X, ChevronDown, Search } from 'lucide-react';
-import { FaLinkedin as Linkedin, FaGithub as Github, FaTwitter as Twitter, FaInstagram as Instagram } from 'react-icons/fa';
+import { FaLinkedin as Linkedin, FaGithub as Github } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -41,7 +41,7 @@ const Navbar = ({ theme, toggleTheme, onSearchClick }) => {
       ]
     },
     { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Blog', path: '/blog' },
+    { name: 'Engineering Notes', path: '/blog' },
     { name: 'Lab', path: '/lab' },
     { name: 'Now', path: '/now' },
     { name: 'Contact', path: '/contact' }
@@ -179,12 +179,6 @@ const Navbar = ({ theme, toggleTheme, onSearchClick }) => {
           <a href="https://github.com/Khaalid245?tab=repositories" target="_blank" rel="noreferrer" className="hover:text-textPrimary transition duration-200">
             <Github size={16} />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-textPrimary transition duration-200">
-            <Twitter size={16} />
-          </a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="hover:text-textPrimary transition duration-200">
-            <Instagram size={16} />
-          </a>
         </div>
 
         {/* Mobile Hamburger menu */}
@@ -252,12 +246,6 @@ const Navbar = ({ theme, toggleTheme, onSearchClick }) => {
               </a>
               <a href="https://github.com/Khaalid245?tab=repositories" target="_blank" rel="noreferrer" className="hover:text-accent">
                 <Github size={18} />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-accent">
-                <Twitter size={18} />
-              </a>
-              <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="hover:text-accent">
-                <Instagram size={18} />
               </a>
             </div>
           </motion.div>

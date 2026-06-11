@@ -3,26 +3,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   FaFolderOpen, FaServer, FaDatabase, FaDocker, FaBrain, FaGlobe, 
-  FaShieldAlt, FaBell, FaUsers, FaSearch, FaCode, FaBug, 
-  FaRocket, FaProjectDiagram, FaChevronRight,
-  FaTerminal, FaBook, FaNetworkWired, FaCheck, FaFolder, FaSync,
-  FaExternalLinkAlt, FaPlay, FaChevronDown, FaFileCode
+  FaSearch, FaCode, FaBug, FaRocket, FaProjectDiagram,
+  FaFolder, FaPlay, FaFileCode
 } from 'react-icons/fa';
-import { 
-  ApiArchitecture, QueueSystem, AiWorkflow, CoursePlatformFlow 
-} from '../components/ArchitectureDiagram';
+
 
 // Capstone actual screenshot imports
-import screen2 from '../assets/projects/imageprojects/projectone/2.png';
 import screenAdmin1 from '../assets/projects/imageprojects/projectone/admin 1.png';
 import screenAdminDashboard from '../assets/projects/imageprojects/projectone/admisn dashbaord.png';
-import screenFormMaster from '../assets/projects/imageprojects/projectone/form master.png';
 import screenFormMasterDashboard from '../assets/projects/imageprojects/projectone/form mastrer dashbaord.png';
 import screenSecuritySetting from '../assets/projects/imageprojects/projectone/security sitting.png';
 import screenSetting from '../assets/projects/imageprojects/projectone/sitting.png';
-import screenSupervisor from '../assets/projects/imageprojects/projectone/supervisor.png';
 import screenTeacherDashboard from '../assets/projects/imageprojects/projectone/teacher dashbaord.png';
-import screenTeacherDashboard2 from '../assets/projects/imageprojects/projectone/teacher dashbaord2.png';
 
 // E-Commerce actual screenshot imports
 import ecommerce1 from '../assets/projects/Imagetwo/1.png';
@@ -180,11 +172,7 @@ const PortfolioPage = () => {
 
 
 
-  const architectureCards = [
-    { title: 'API Architecture', desc: 'Gateway proxy layer managing JWT verification, rate limiting, and request routing to Node services.', component: <ApiArchitecture /> },
-    { title: 'Queue System', desc: 'Decoupling ingestion endpoints from heavy calculations using Redis-backed asynchronous workers.', component: <QueueSystem /> },
-    { title: 'AI Workflow', desc: 'RAG prompt pipeline mapping user parameters, checking semantic vector stores, and parsing LLM output JSON formats.', component: <AiWorkflow /> }
-  ];
+
 
   const engineeringProcess = [
     { step: 1, title: 'Understand the problem', desc: 'Define operational bottlenecks, query contentions, or infrastructure gaps before touch.', icon: <FaSearch /> },
@@ -483,7 +471,7 @@ const PortfolioPage = () => {
           <div className="w-full lg:w-[52%] flex flex-col justify-between space-y-6">
             {/* Overview */}
             <div className="space-y-4">
-              <p className="text-sm text-slate-650 dark:text-slate-400 leading-relaxed font-sans">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
                 A full-stack educational platform designed to help schools monitor attendance, identify academic risk indicators, and support intervention workflows between teachers and administrators.
               </p>
 
@@ -493,7 +481,7 @@ const PortfolioPage = () => {
                   <h5 className="font-mono text-[10px] uppercase tracking-wider text-rose-500 font-bold">
                     The Problem
                   </h5>
-                  <p className="text-xs text-slate-650 dark:text-slate-450 font-sans leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
                     Schools struggle to monitor attendance patterns manually, leading to delayed academic interventions and increased drop-out rates.
                   </p>
                 </div>
@@ -501,7 +489,7 @@ const PortfolioPage = () => {
                   <h5 className="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-bold">
                     The Solution
                   </h5>
-                  <p className="text-xs text-slate-650 dark:text-slate-455 font-sans leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
                     Automated event pipelines calculate real-time risk scores, instantly flagging warning indicators to supervisor dashboards for immediate support.
                   </p>
                 </div>
@@ -542,7 +530,7 @@ const PortfolioPage = () => {
                 {['React', 'Tailwind CSS', 'Django REST', 'MySQL', 'Redis', 'Docker', 'JWT'].map((tech, techIdx) => (
                   <span
                     key={techIdx}
-                    className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs text-slate-650 dark:text-slate-400"
+                    className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs text-slate-600 dark:text-slate-400"
                   >
                     {tech}
                   </span>
@@ -745,7 +733,7 @@ const PortfolioPage = () => {
           <div className="w-full lg:w-[52%] flex flex-col justify-between space-y-6">
             {/* Overview */}
             <div className="space-y-4">
-              <p className="text-sm text-slate-650 dark:text-slate-400 leading-relaxed font-sans">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
                 A high-performance e-commerce catalog and checkout platform engineered to handle complex operations, transaction integrity, and robust integrations with payment processing networks.
               </p>
 
@@ -755,7 +743,7 @@ const PortfolioPage = () => {
                   <h5 className="font-mono text-[10px] uppercase tracking-wider text-rose-500 font-bold">
                     The Problem
                   </h5>
-                  <p className="text-xs text-slate-650 dark:text-slate-450 font-sans leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
                     Legacy checkout systems suffer from inventory race conditions under high load, causing double-selling of items, slow catalog lookup times, and asynchronous webhook delivery failures.
                   </p>
                 </div>
@@ -763,7 +751,7 @@ const PortfolioPage = () => {
                   <h5 className="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-bold">
                     The Solution
                   </h5>
-                  <p className="text-xs text-slate-650 dark:text-slate-455 font-sans leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
                     Designed a high-concurrency order pipeline utilizing SQL transaction row-locking for stock reservation, Redis caching for fast static search, and idempotent webhook listeners with automatic retries to sync storefront checkout states.
                   </p>
                 </div>
@@ -804,7 +792,7 @@ const PortfolioPage = () => {
                 {['React', 'Tailwind CSS', 'Django REST', 'MySQL', 'Redis', 'Docker', 'Stripe'].map((tech, techIdx) => (
                   <span
                     key={techIdx}
-                    className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs text-slate-650 dark:text-slate-400"
+                    className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs text-slate-600 dark:text-slate-400"
                   >
                     {tech}
                   </span>
@@ -853,17 +841,17 @@ const PortfolioPage = () => {
         <div className="flex flex-col lg:flex-row gap-12 items-stretch">
           {/* LEFT COLUMN: Interactive Backend Explorer */}
           <div className="w-full lg:w-[48%] flex flex-col justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-lightCard/50 dark:bg-darkCard/20 p-5 space-y-5">
-            <BackendVisualExplorer onTriggerWalkthrough={() => setWalkthroughOpen(true)} />
+            <BackendVisualExplorer />
           </div>
 
           {/* RIGHT COLUMN: Project Info and Highlights */}
           <div className="w-full lg:w-[52%] flex flex-col justify-between space-y-6">
             {/* Overview */}
             <div className="space-y-4 font-sans">
-              <p className="text-sm text-slate-650 dark:text-slate-400 leading-relaxed">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 A backend service designed to support academic operations including course allocation, facilitator activity tracking, and structured reporting workflows.
               </p>
-              <p className="text-sm text-slate-650 dark:text-slate-400 leading-relaxed">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Built with Node.js, Express, MySQL, Redis, and JWT authentication, the platform manages role-based access control for managers, facilitators, and students while supporting asynchronous notification pipelines and modular API architecture.
               </p>
 
@@ -873,7 +861,7 @@ const PortfolioPage = () => {
                   <h5 className="font-mono text-[10px] uppercase tracking-wider text-rose-500 font-bold">
                     The Problem
                   </h5>
-                  <p className="text-xs text-slate-650 dark:text-slate-450 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                     Academic operations struggle with course allocation tracking, activity monitoring, and automated notifications under manual administration workflows.
                   </p>
                 </div>
@@ -881,7 +869,7 @@ const PortfolioPage = () => {
                   <h5 className="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-bold">
                     The Solution
                   </h5>
-                  <p className="text-xs text-slate-650 dark:text-slate-455 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                     Built a modular Node.js/Express backend service using Sequelize ORM for MySQL modeling, simple-jwt access guards, and Redis background queues for async notifications.
                   </p>
                 </div>
@@ -926,7 +914,7 @@ const PortfolioPage = () => {
                 {['Node.js', 'Express.js', 'MySQL', 'Sequelize', 'Redis', 'JWT', 'Swagger', 'Jest / Mocha'].map((tech, techIdx) => (
                   <span
                     key={techIdx}
-                    className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs text-slate-650 dark:text-slate-400"
+                    className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs text-slate-600 dark:text-slate-400"
                   >
                     {tech}
                   </span>
@@ -1328,7 +1316,7 @@ const PortfolioPage = () => {
                   <h4 className="text-xs font-mono font-bold text-slate-405 dark:text-slate-500 uppercase tracking-wider">
                     Overview
                   </h4>
-                  <p className="text-sm text-slate-650 dark:text-slate-405 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {caseStudies[activeCaseStudy].description}
                   </p>
                 </div>
@@ -1342,7 +1330,7 @@ const PortfolioPage = () => {
                     {caseStudies[activeCaseStudy].techStack.map((tech, techIdx) => (
                       <span
                         key={techIdx}
-                        className="rounded border border-slate-200 dark:border-slate-850 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs text-slate-650 dark:text-slate-405"
+                        className="rounded border border-slate-200 dark:border-slate-850 bg-slate-100 dark:bg-slate-900/60 px-2.5 py-0.5 text-xs text-slate-600 dark:text-slate-400"
                       >
                         {tech}
                       </span>
@@ -1355,7 +1343,7 @@ const PortfolioPage = () => {
                   <h4 className="text-xs font-mono font-bold text-slate-405 dark:text-slate-500 uppercase tracking-wider">
                     Key Engineering Focuses
                   </h4>
-                  <ul className="space-y-2 text-xs text-slate-650 dark:text-slate-405 font-mono">
+                  <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400 font-mono">
                     {caseStudies[activeCaseStudy].focuses.map((focus, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
                         <span className="text-emerald-500 dark:text-emerald-400 font-bold flex-shrink-0">✔</span>
@@ -1370,7 +1358,7 @@ const PortfolioPage = () => {
                   <h4 className="text-xs font-mono font-bold text-slate-405 dark:text-slate-500 uppercase tracking-wider">
                     System Outcome
                   </h4>
-                  <p className="text-xs text-slate-650 dark:text-slate-405 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                     {caseStudies[activeCaseStudy].outcome}
                   </p>
                 </div>
@@ -1439,14 +1427,14 @@ const PortfolioPage = () => {
                     Workspace Root
                   </h4>
                   <div className="space-y-1 text-xs font-mono">
-                    <div className="flex items-center gap-1.5 text-slate-650 dark:text-slate-400 p-1 font-bold">
+                    <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 p-1 font-bold">
                       <FaFolder size={12} className="text-amber-500" />
                       <span>config/</span>
                     </div>
                     <button 
                       onClick={() => setSelectedFile('database')}
                       className={`w-full flex items-center gap-1.5 pl-6 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-900 text-left transition ${
-                        selectedFile === 'database' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-450'
+                        selectedFile === 'database' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-400'
                       }`}
                     >
                       <FaFileCode size={11} className="text-slate-400" />
@@ -1455,21 +1443,21 @@ const PortfolioPage = () => {
                     <button 
                       onClick={() => setSelectedFile('redis')}
                       className={`w-full flex items-center gap-1.5 pl-6 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-900 text-left transition ${
-                        selectedFile === 'redis' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-455'
+                        selectedFile === 'redis' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-400'
                       }`}
                     >
                       <FaFileCode size={11} className="text-slate-400" />
                       <span>redis.js</span>
                     </button>
 
-                    <div className="flex items-center gap-1.5 text-slate-650 dark:text-slate-400 p-1 font-bold pt-2">
+                    <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 p-1 font-bold pt-2">
                       <FaFolder size={12} className="text-amber-500" />
                       <span>controllers/</span>
                     </div>
                     <button 
                       onClick={() => setSelectedFile('authController')}
                       className={`w-full flex items-center gap-1.5 pl-6 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-900 text-left transition ${
-                        selectedFile === 'authController' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-450'
+                        selectedFile === 'authController' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-400'
                       }`}
                     >
                       <FaFileCode size={11} className="text-slate-400" />
@@ -1478,7 +1466,7 @@ const PortfolioPage = () => {
                     <button 
                       onClick={() => setSelectedFile('courseController')}
                       className={`w-full flex items-center gap-1.5 pl-6 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-900 text-left transition ${
-                        selectedFile === 'courseController' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-450'
+                        selectedFile === 'courseController' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-400'
                       }`}
                     >
                       <FaFileCode size={11} className="text-slate-400" />
@@ -1487,21 +1475,21 @@ const PortfolioPage = () => {
                     <button 
                       onClick={() => setSelectedFile('reportController')}
                       className={`w-full flex items-center gap-1.5 pl-6 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-900 text-left transition ${
-                        selectedFile === 'reportController' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-450'
+                        selectedFile === 'reportController' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-400'
                       }`}
                     >
                       <FaFileCode size={11} className="text-slate-400" />
                       <span>reportController.js</span>
                     </button>
 
-                    <div className="flex items-center gap-1.5 text-slate-650 dark:text-slate-400 p-1 font-bold pt-2">
+                    <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 p-1 font-bold pt-2">
                       <FaFolder size={12} className="text-amber-500" />
                       <span>models/</span>
                     </div>
                     <button 
                       onClick={() => setSelectedFile('userModel')}
                       className={`w-full flex items-center gap-1.5 pl-6 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-900 text-left transition ${
-                        selectedFile === 'userModel' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-450'
+                        selectedFile === 'userModel' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-400'
                       }`}
                     >
                       <FaFileCode size={11} className="text-slate-400" />
@@ -1510,21 +1498,21 @@ const PortfolioPage = () => {
                     <button 
                       onClick={() => setSelectedFile('allocationModel')}
                       className={`w-full flex items-center gap-1.5 pl-6 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-900 text-left transition ${
-                        selectedFile === 'allocationModel' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-450'
+                        selectedFile === 'allocationModel' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-400'
                       }`}
                     >
                       <FaFileCode size={11} className="text-slate-400" />
                       <span>Allocation.js</span>
                     </button>
 
-                    <div className="flex items-center gap-1.5 text-slate-650 dark:text-slate-400 p-1 font-bold pt-2">
+                    <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 p-1 font-bold pt-2">
                       <FaFolder size={12} className="text-amber-500" />
                       <span>workers/</span>
                     </div>
                     <button 
                       onClick={() => setSelectedFile('worker')}
                       className={`w-full flex items-center gap-1.5 pl-6 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-900 text-left transition ${
-                        selectedFile === 'worker' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-450'
+                        selectedFile === 'worker' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 font-bold border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-550 dark:text-slate-400'
                       }`}
                     >
                       <FaFileCode size={11} className="text-slate-400" />
@@ -1535,7 +1523,7 @@ const PortfolioPage = () => {
                       <button 
                         onClick={() => setSelectedFile('server')}
                         className={`w-full flex items-center gap-1.5 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-900 text-left transition font-bold ${
-                          selectedFile === 'server' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-650 dark:text-slate-400'
+                          selectedFile === 'server' ? 'text-lightAccent dark:text-darkAccent bg-lightAccent/5 dark:bg-darkAccent/5 border-l-2 border-lightAccent dark:border-darkAccent' : 'text-slate-600 dark:text-slate-400'
                         }`}
                       >
                         <FaFileCode size={11} className="text-slate-400 mr-0.5" />
@@ -1593,7 +1581,7 @@ const PortfolioPage = () => {
 };
 
 // HELPER COMPONENT: BackendVisualExplorer
-const BackendVisualExplorer = ({ onTriggerWalkthrough }) => {
+const BackendVisualExplorer = () => {
   const [activeTab, setActiveTab] = React.useState('terminal'); // 'terminal', 'swagger', 'architecture'
   const [terminalLogs, setTerminalLogs] = React.useState([
     { text: '$ npm run start:dev', type: 'command' },

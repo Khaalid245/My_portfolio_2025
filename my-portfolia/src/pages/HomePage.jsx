@@ -61,6 +61,7 @@ const HomePage = () => {
                 readTime={article.readTime}
                 category={article.category}
                 link="/blog"
+                state={{ articleId: article.id }}
               />
             </motion.div>
           ))}

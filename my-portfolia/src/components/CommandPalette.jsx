@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, FileText, Cpu, BookOpen, Rocket, ChevronRight } from 'lucide-react';
+import { Search, FileText, Cpu, BookOpen, ChevronRight } from 'lucide-react';
 
 const CommandPalette = ({ isOpen, setIsOpen }) => {
   const [query, setQuery] = useState('');
@@ -18,8 +18,8 @@ const CommandPalette = ({ isOpen, setIsOpen }) => {
     { title: 'Resume', desc: 'Experience timeline, skills tags, certifications, print PDF', path: '/about/resume', category: 'Pages', icon: <FileText size={14} /> },
     { title: 'Engineering Philosophy', desc: 'Systems thinking diagram, simplicity, future direction', path: '/about/philosophy', category: 'Pages', icon: <FileText size={14} /> },
     { title: 'Portfolio', desc: 'Featured case studies, dynamic categories, system designs', path: '/portfolio', category: 'Pages', icon: <FileText size={14} /> },
-    { title: 'Blog', desc: 'Engineering notes, Redis queue articles, devops logs', path: '/blog', category: 'Pages', icon: <FileText size={14} /> },
-    { title: 'Lab', desc: 'Boilerplate starters, cheat sheets, workflow stages, tools stack', path: '/lab', category: 'Pages', icon: <FileText size={14} /> },
+    { title: 'Engineering Notes', desc: 'Continuous learning journals, backend architectures, DevOps pipeline notes', path: '/blog', category: 'Pages', icon: <FileText size={14} /> },
+    { title: 'Systems Lab', desc: 'Local docker setups, nginx servers, transaction locking scripts, and middleware config sandbox', path: '/lab', category: 'Pages', icon: <FileText size={14} /> },
     { title: 'Contact', desc: 'Accordion FAQs, current status checkmarks, mail form', path: '/contact', category: 'Pages', icon: <FileText size={14} /> },
     { title: 'Now', desc: 'What I\'m currently building, learning, reading, and goals snapshot', path: '/now', category: 'Pages', icon: <FileText size={14} /> },
     
@@ -29,14 +29,15 @@ const CommandPalette = ({ isOpen, setIsOpen }) => {
     { title: 'Analytics Ingestion Pipeline', desc: 'Case Study: Flask SQLAlchemy, indexing optimization, event query speeds', path: '/portfolio', category: 'Projects', icon: <Cpu size={14} /> },
     
     // Blog articles
-    { title: 'Building Redis Notification Systems', desc: 'Redis pub/sub and streams background job orchestration guide', path: '/blog', category: 'Blog Articles', icon: <BookOpen size={14} /> },
-    { title: 'JWT Authentication in Node.js', desc: 'Secure token rotations, cookies, and Express gate policies', path: '/blog', category: 'Blog Articles', icon: <BookOpen size={14} /> },
-    { title: 'My Journey Into DevOps', desc: 'Transitioning from building frontends to managing containers and cloud systems', path: '/blog', category: 'Blog Articles', icon: <BookOpen size={14} /> },
+    { title: 'How I Built Secure JWT Authentication', desc: 'Securing stateless REST endpoints in Django using HTTP-only cookies, token rotation, and custom middleware', path: '/blog', state: { articleId: 'jwt-auth' }, category: 'Engineering Notes', icon: <BookOpen size={14} /> },
+    { title: 'What I Learned Building an E-Commerce Backend', desc: 'Managing transaction locking, Redis performance caching, and webhook idempotency under high concurrency', path: '/blog', state: { articleId: 'ecommerce-backend' }, category: 'Engineering Notes', icon: <BookOpen size={14} /> },
+    { title: 'My Journey Learning DevOps and Backend Systems', desc: 'Transitioning from local scripts to server configuration, Docker virtualization, Nginx proxies, and automation pipelines', path: '/blog', state: { articleId: 'devops-journey' }, category: 'Engineering Notes', icon: <BookOpen size={14} /> },
 
-    // Lab items
-    { title: 'Full Stack Starter Boilerplate', desc: 'Next.js, TS, Tailwind, auth, docker starter kit', path: '/lab', category: 'Lab Starters', icon: <Rocket size={14} /> },
-    { title: 'Backend API Boilerplate Starter', desc: 'Node, Express, Redis, MySQL, swagger API design template', path: '/lab', category: 'Lab Starters', icon: <Rocket size={14} /> },
-    { title: 'Docker Development Environment Stack', desc: 'Compose local stack (Nginx, PostgreSQL, Compose configuration)', path: '/lab', category: 'Lab Starters', icon: <Rocket size={14} /> }
+    // Systems configurations
+    { title: 'Docker Compose Config', desc: 'Local multi-container stack configured for backend service, cache, and database', path: '/lab', state: { fileId: 'docker' }, category: 'Systems Lab', icon: <Cpu size={14} /> },
+    { title: 'Nginx Virtual Host Config', desc: 'Server host block configuration routing local port 80 traffic with CORS options', path: '/lab', state: { fileId: 'nginx' }, category: 'Systems Lab', icon: <Cpu size={14} /> },
+    { title: 'Sequelize SELECT FOR UPDATE Lock', desc: 'Database row-locking implementation protecting stocks against checkout race conditions', path: '/lab', state: { fileId: 'sequelize' }, category: 'Systems Lab', icon: <Cpu size={14} /> },
+    { title: 'Django REST Cookie JWT Authentication', desc: 'Python custom DRF authentication backend verifying cookies fallback', path: '/lab', state: { fileId: 'django' }, category: 'Systems Lab', icon: <Cpu size={14} /> }
   ];
 
   // Listen for Ctrl+K / Cmd+K
@@ -85,14 +86,18 @@ const CommandPalette = ({ isOpen, setIsOpen }) => {
     } else if (e.key === 'Enter') {
       e.preventDefault();
       if (filtered[selectedIndex]) {
-        handleSelect(filtered[selectedIndex].path);
+        handleSelect(filtered[selectedIndex]);
       }
     }
   };
 
-  const handleSelect = (path) => {
+  const handleSelect = (item) => {
     setIsOpen(false);
-    navigate(path);
+    if (item.state) {
+      navigate(item.path, { state: item.state });
+    } else {
+      navigate(item.path);
+    }
   };
 
   // Scroll selected item into view
@@ -155,7 +160,7 @@ const CommandPalette = ({ isOpen, setIsOpen }) => {
                   return (
                     <div
                       key={index}
-                      onClick={() => handleSelect(item.path)}
+                      onClick={() => handleSelect(item)}
                       onMouseEnter={() => setSelectedIndex(index)}
                       className={`flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer transition-colors duration-250 ${
                         isSelected 

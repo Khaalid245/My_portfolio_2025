@@ -1,4 +1,4 @@
-import profilePic from '../assets/khalidProfile.png';
+import profilePic from '../assets/khalidProfile.jpg';
 import { motion } from 'framer-motion';
 import Button from './ui/Button';
 import CircularProfile from './ui/CircularProfile';
@@ -57,7 +57,7 @@ const Hero = () => {
             variants={itemVariants} 
             className="text-2xl lg:text-3xl font-heading font-semibold text-textSecondary mb-7"
           >
-            Full-Stack AI Systems Engineer
+            Backend-Focused Full-Stack Developer
           </motion.p>
           
           {/* Description Paragraph */}

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Mail, ArrowUpRight, Cpu } from 'lucide-react';
-import { FaGithub as Github, FaLinkedin as Linkedin, FaTwitter as Twitter, FaInstagram as Instagram } from 'react-icons/fa';
+import { FaGithub as Github, FaLinkedin as Linkedin } from 'react-icons/fa';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,7 +9,7 @@ const Footer = () => {
     { name: 'Home', path: '/' },
     { name: 'Portfolio', path: '/portfolio' },
     { name: 'Lab (Resources)', path: '/lab' },
-    { name: 'Blog (Writing)', path: '/blog' },
+    { name: 'Engineering Notes', path: '/blog' },
     { name: 'Now', path: '/now' },
   ];
 
@@ -23,8 +23,6 @@ const Footer = () => {
   const socialLinks = [
     { name: 'GitHub', href: 'https://github.com/Khaalid245?tab=repositories', icon: <Github size={16} /> },
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/khalid-abdillahi-269871276/', icon: <Linkedin size={16} /> },
-    { name: 'Twitter', href: 'https://twitter.com', icon: <Twitter size={16} /> },
-    { name: 'Instagram', href: 'https://www.instagram.com/', icon: <Instagram size={16} /> },
   ];
 
   return (
@@ -45,7 +43,7 @@ const Footer = () => {
             </span>
           </div>
           <p className="text-[13px] text-textSecondary leading-relaxed max-w-sm">
-            Full-Stack Systems Engineer specializing in reliable backend services, secure REST APIs, DevOps container workflows, and AI integrations.
+            Backend-Focused Full-Stack Developer specializing in reliable backend services, secure REST APIs, DevOps container workflows, and AI integrations.
           </p>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/5 border border-emerald-500/15">
             <span className="relative flex h-1.5 w-1.5">
