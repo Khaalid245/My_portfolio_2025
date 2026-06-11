@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 const Experience = () => {
   return (
     <div className="border-b border-borderPrimary pb-12">
-      <motion.h1 
+      <motion.h2 
         whileInView={{opacity: 1, y: 0}}
         initial={{opacity: 0, y: -20}}
         transition={{duration: 0.5}}
         className="my-20 text-center text-4xl font-bold tracking-tight text-textPrimary"
       >
         Experience
-      </motion.h1>
+      </motion.h2>
 
       <div>
         {EXPERIENCES.map((experience, index) => (
@@ -29,9 +29,9 @@ const Experience = () => {
               transition={{duration: 0.5}}
               className="w-full max-w-xl lg:w-3/4"
             >
-              <h6 className="mb-2 font-semibold text-textPrimary"> 
+              <h3 className="mb-2 font-semibold text-textPrimary"> 
                 {experience.role} - <span className="text-sm font-mono text-accent/90">{experience.company}</span>
-              </h6>
+              </h3>
               <ul className="mb-4 list-disc pl-4 text-textSecondary text-sm leading-relaxed flex flex-col gap-2">
                 {experience.bullets.map((bullet, bIndex) => (
                   <li key={bIndex}>{bullet}</li>

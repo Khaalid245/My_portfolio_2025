@@ -67,14 +67,14 @@ const Technologies = () => {
   return (
     <div className="border-b border-borderPrimary pb-20">
       <div className="my-20 text-center space-y-3">
-        <motion.h1
+        <motion.h2
           whileInView={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
           className="text-4xl font-bold tracking-tight text-textPrimary"
         >
           Technical Stack
-        </motion.h1>
+        </motion.h2>
         <motion.p
           whileInView={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 15 }}
@@ -105,7 +105,11 @@ const Technologies = () => {
                     key={skillIndex}
                     className="flex items-center gap-3 rounded-xl border border-borderPrimary/80 bg-bgSecondary/45 px-3 py-2 hover:border-accent/30 hover:bg-bgSecondary/70 transition duration-300 group"
                   >
-                    <IconComponent className={`text-xl ${skill.color} group-hover:scale-110 transition duration-300`} />
+                    <IconComponent 
+                      className={`text-xl ${skill.color} group-hover:scale-110 transition duration-300`} 
+                      role="img" 
+                      aria-label={skill.name} 
+                    />
                     <span className="text-xs font-sans font-medium text-textSecondary group-hover:text-textPrimary transition duration-300">
                       {skill.name}
                     </span>

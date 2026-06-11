@@ -58,9 +58,9 @@ const Footer = () => {
 
         {/* Explore Links column (2 cols) */}
         <div className="md:col-span-2 space-y-3.5 text-left">
-          <h4 className="font-mono text-[11px] uppercase tracking-widest text-textPrimary font-bold border-b border-borderPrimary/30 pb-1.5">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-textPrimary font-bold border-b border-borderPrimary/30 pb-1.5">
             Explore
-          </h4>
+          </p>
           <ul className="space-y-2 text-[12px] font-mono">
             {exploreLinks.map((link, idx) => (
               <li key={idx}>
@@ -74,9 +74,9 @@ const Footer = () => {
 
         {/* About Links column (2 cols) */}
         <div className="md:col-span-2 space-y-3.5 text-left">
-          <h4 className="font-mono text-[11px] uppercase tracking-widest text-textPrimary font-bold border-b border-borderPrimary/30 pb-1.5">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-textPrimary font-bold border-b border-borderPrimary/30 pb-1.5">
             About & Info
-          </h4>
+          </p>
           <ul className="space-y-2 text-[12px] font-mono">
             {aboutLinks.map((link, idx) => (
               <li key={idx}>
@@ -90,9 +90,9 @@ const Footer = () => {
 
         {/* Connect column (3 cols) */}
         <div className="md:col-span-3 space-y-3.5 text-left">
-          <h4 className="font-mono text-[11px] uppercase tracking-widest text-textPrimary font-bold border-b border-borderPrimary/30 pb-1.5">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-textPrimary font-bold border-b border-borderPrimary/30 pb-1.5">
             Connect
-          </h4>
+          </p>
           <div className="space-y-3">
             <a 
               href="mailto:khalidabdillahi30@gmail.com" 

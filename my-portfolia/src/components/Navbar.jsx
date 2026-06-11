@@ -173,10 +173,10 @@ const Navbar = ({ theme, toggleTheme, onSearchClick }) => {
 
         {/* Social Icons (Desktop Only) */}
         <div className="hidden lg:flex items-center space-x-3 text-base border-l border-borderPrimary pl-4 text-textMuted">
-          <a href="https://www.linkedin.com/in/khalid-abdillahi-269871276/" target="_blank" rel="noreferrer" className="hover:text-textPrimary transition duration-200">
+          <a href="https://www.linkedin.com/in/khalid-abdillahi-269871276/" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" className="hover:text-textPrimary transition duration-200">
             <Linkedin size={16} />
           </a>
-          <a href="https://github.com/Khaalid245?tab=repositories" target="_blank" rel="noreferrer" className="hover:text-textPrimary transition duration-200">
+          <a href="https://github.com/Khaalid245?tab=repositories" target="_blank" rel="noreferrer" aria-label="GitHub Profile" className="hover:text-textPrimary transition duration-200">
             <Github size={16} />
           </a>
         </div>
@@ -241,10 +241,10 @@ const Navbar = ({ theme, toggleTheme, onSearchClick }) => {
             
             {/* Social links (Mobile Only) */}
             <div className="flex items-center gap-4 text-base text-textMuted pt-2 justify-center">
-              <a href="https://www.linkedin.com/in/khalid-abdillahi-269871276/" target="_blank" rel="noreferrer" className="hover:text-accent">
+              <a href="https://www.linkedin.com/in/khalid-abdillahi-269871276/" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" className="hover:text-accent">
                 <Linkedin size={18} />
               </a>
-              <a href="https://github.com/Khaalid245?tab=repositories" target="_blank" rel="noreferrer" className="hover:text-accent">
+              <a href="https://github.com/Khaalid245?tab=repositories" target="_blank" rel="noreferrer" aria-label="GitHub Profile" className="hover:text-accent">
                 <Github size={18} />
               </a>
             </div>
