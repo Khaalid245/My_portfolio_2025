@@ -20,14 +20,14 @@ html {
 }
 
 .dark {
-  --color-bg: #020617;
-  --color-bg-sec: #0F172A;
-  --color-card: #0F172A;
-  --color-border: #1E293B;
-  --color-text-primary: #F8FAFC;
-  --color-text-secondary: #CBD5E1;
-  --color-text-muted: #64748B;
-  --color-accent: #6366F1;
+  --color-bg: #161616;          /* Cinematic matte deep gray (Adobe Premiere style) */
+  --color-bg-sec: #222222;      /* Matte card gray */
+  --color-card: #222222;
+  --color-border: #2E2E2E;      /* Matte border line */
+  --color-text-primary: #F3F4F6;  /* High contrast light text */
+  --color-text-secondary: #D1D5DB; /* Muted reading text */
+  --color-text-muted: #9CA3AF;    /* Details and captions text */
+  --color-accent: #6366F1;      /* Indigo Accent */
   --color-accent-hover: #818CF8;
 }
 

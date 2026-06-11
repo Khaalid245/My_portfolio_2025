@@ -12,6 +12,7 @@ import ContactPage from './pages/ContactPage';
 import Footer from './components/Footer';
 import NowPage from './pages/NowPage';
 import CommandPalette from './components/CommandPalette';
+import SEOMetadata from './components/SEOMetadata';
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
 
   return (
     <Router>
+      <SEOMetadata />
       <CommandPalette isOpen={commandPaletteOpen} setIsOpen={setCommandPaletteOpen} />
       <div className="overflow-x-hidden text-textPrimary min-h-screen theme-transition bg-bgPrimary selection:bg-accent/10 selection:text-accent">
 

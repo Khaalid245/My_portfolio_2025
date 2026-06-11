@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import aboutImg from '../assets/khalid2.jpg';
 import { ABOUT_PREVIEW } from '../constants';
 import { motion } from "framer-motion";
@@ -20,7 +21,7 @@ const About = () => {
               src={aboutImg} 
               width={220} 
               height={220} 
-              alt="about" 
+              alt="Khalid Abdillahi - Software Engineering Student & Backend Developer" 
               className="rounded-2xl border border-slate-800/80 grayscale hover:grayscale-0 transition duration-500 shadow-xl w-48 h-48 object-cover" 
             />
           </div>
@@ -35,12 +36,12 @@ const About = () => {
             <p className="max-w-xl text-slate-400 text-base leading-relaxed text-center lg:text-left">
               {ABOUT_PREVIEW.text}
             </p>
-            <a 
-              href={ABOUT_PREVIEW.link} 
+            <Link 
+              to="/about/me" 
               className="inline-flex items-center gap-1 font-mono text-sm text-blue-400 hover:text-blue-300 hover:underline transition duration-300"
             >
               Read More →
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

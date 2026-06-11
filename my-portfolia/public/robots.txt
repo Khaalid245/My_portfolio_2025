@@ -1,0 +1,6 @@
+# Allow all search engine crawlers to index the site
+User-agent: *
+Allow: /
+
+# Reference the sitemap location
+Sitemap: https://khalidabdillahi.dev/sitemap.xml

@@ -73,20 +73,20 @@ const AboutMePage = () => {
               About Me
             </h1>
             <p className="mt-3 text-lg font-medium text-lightAccent dark:text-darkAccent leading-relaxed">
-              I’m a software engineering student and backend-focused full-stack developer passionate about building scalable web applications and learning how modern systems work behind the scenes.
+              I&apos;m a Software Engineering student at the African Leadership University and a Mastercard Foundation Scholar passionate about building backend systems and full-stack web applications.
             </p>
           </div>
           <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-            My journey in technology expanded after receiving the Mastercard Foundation Scholarship, which gave me the opportunity to grow, collaborate with diverse communities, and continue improving my skills in software engineering.
+            Since starting my software engineering journey in 2023, I&apos;ve worked with React, Django REST Framework, Node.js, MySQL, Redis, Docker, and modern web technologies through academic projects, internships, and personal initiatives.
           </p>
           <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-            I’ve worked on projects involving React.js, Django REST Framework, Node.js, APIs, databases, and deployment workflows. I enjoy backend development, system design, DevOps workflows, and exploring modern AI-powered applications.
+            I enjoy designing practical solutions, developing scalable APIs, working with databases, and exploring DevOps and AI-powered applications.
           </p>
           <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-            Currently, I’m improving my skills in backend systems, cloud workflows, and full-stack AI engineering through practical projects and continuous learning.
+            Currently, I&apos;m focused on strengthening my skills in backend engineering, cloud technologies, and system design through hands-on projects and continuous learning.
           </p>
           <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-semibold">
-            I enjoy solving real-world problems, building systems, and continuously improving as an engineer.
+            I believe in building useful software, solving real-world problems, and continuously improving as an engineer.
           </p>
         </motion.div>
       </section>

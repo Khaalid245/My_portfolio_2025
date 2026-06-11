@@ -4,14 +4,14 @@ import project2 from "../assets/projects/project-2.png";
 
 export const HERO_CONTENT = {
   title: "Khalid Abdillahi",
-  subtitle: "Full-Stack AI Systems Engineer",
-  specialization: "Backend & DevOps • Full-Stack AI Systems",
-  description: "Backend-focused full-stack developer building modern AI-powered systems and scalable applications.",
+  subtitle: "Backend-Focused Full-Stack Developer",
+  specialization: "Backend Development • DevOps Learner • ALU Software Engineering Student",
+  description: "Backend-focused full-stack developer building modern web systems and scalable applications.",
   stats: [
     { label: "Experience", value: "2+ Years" },
     { label: "Systems Built", value: "10+" },
-    { label: "Primary Focus", value: "Backend & DevOps" },
-    { label: "AI Integration", value: "Full-Stack AI Systems" }
+    { label: "Education", value: "ALU Student" },
+    { label: "Scholarship", value: "Mastercard Scholar" }
   ]
 };
 
@@ -144,7 +144,7 @@ export const LATEST_WRITING = [
 
 export const ABOUT_PREVIEW = {
   text: "I’m a software engineering student and backend-focused developer passionate about building scalable web applications and learning how modern systems work behind the scenes.",
-  link: "#"
+  link: "/about/me"
 };
 
 export const CONTACT_CTA = {
