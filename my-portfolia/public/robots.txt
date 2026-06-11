@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Reference the sitemap location
-Sitemap: https://khalidabdillahi.dev/sitemap.xml
+Sitemap: https://my-portfolio-2025-three.vercel.app/sitemap.xml

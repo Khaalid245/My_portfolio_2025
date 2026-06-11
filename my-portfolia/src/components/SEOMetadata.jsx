@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const siteUrl = 'https://khalidabdillahi.dev';
+const siteUrl = 'https://my-portfolio-2025-three.vercel.app';
 const defaultImage = 'https://github.com/Khaalid245.png'; // Direct public GitHub avatar for sharing
 
 const seoData = {
